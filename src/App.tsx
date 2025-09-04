@@ -94,7 +94,11 @@ function App() {
                             key={subItem.id}
                             className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-black font-medium"
                             onClick={() => {
-                              setCurrentPage(subItem.id);
+                              if (subItem.id === 'policies') {
+                               window.open('https://kalonhealthcare.com/policies.html', '_blank');
+                              } else {
+                                setCurrentPage(subItem.id);
+                              }
                               setServicesDropdown(false);
                               setHomeDropdown(false);
                             }}
@@ -945,7 +949,8 @@ function App() {
               <Phone className="w-5 h-5 mr-3" style={{ color: '#D4AF37' }} />
               <div>
                 <p className="font-medium">Call Us</p>
-                <p className="text-gray-300">386-886-4433</p>
+                <p className="text-gray-300">386 347 5514</p>
+                <p className="text-gray-300 text-sm">Fax: 949 864 3080</p>
               </div>
             </div>
             
@@ -953,7 +958,7 @@ function App() {
               <Mail className="w-5 h-5 mr-3" style={{ color: '#D4AF37' }} />
               <div>
                 <p className="font-medium">Email</p>
-                <p className="text-gray-300">docayupova@gmail.com</p>
+                <p className="text-gray-300">kalon@kalonhealthcare.com</p>
               </div>
             </div>
             
