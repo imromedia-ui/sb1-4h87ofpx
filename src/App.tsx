@@ -87,7 +87,7 @@ function App() {
 
   const handleMobileNavClick = (pageId: string) => {
     if (pageId === 'policies') {
-      window.open('https://kalonhealthcare.com/policies.html', '_blank');
+      window.open('/policies.html', '_blank');
     } else {
       setCurrentPage(pageId);
     }
@@ -149,7 +149,7 @@ function App() {
                             className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-black font-medium transition-colors duration-150"
                             onClick={() => {
                               if (subItem.id === 'policies') {
-                                window.open('https://kalonhealthcare.com/policies.html', '_blank');
+                                window.open('/policies.html', '_blank');
                               } else {
                                 setCurrentPage(subItem.id);
                               }
