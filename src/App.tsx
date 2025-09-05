@@ -17,7 +17,9 @@ import {
   Star,
   Check,
   Instagram,
-  Facebook
+  Facebook,
+  Menu,
+  X
 } from 'lucide-react';
 
 function App() {
@@ -25,7 +27,28 @@ function App() {
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [expandedService, setExpandedService] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesDropdown, setMobileServicesDropdown] = useState(false);
+  const [mobileHomeDropdown, setMobileHomeDropdown] = useState(false);
 
+  // Close dropdowns when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown-container')) {
+        setServicesDropdown(false);
+        setHomeDropdown(false);
+        setMobileServicesDropdown(false);
+        setMobileHomeDropdown(false);
+      }
+      if (!target.closest('.mobile-menu-container') && !target.closest('.hamburger-button')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
   const navigationItems = [
     { 
       id: 'home', 
@@ -52,6 +75,27 @@ function App() {
     { id: 'contact', label: 'Contact' }
   ];
 
+  const toggleMobileDropdown = (type: 'services' | 'home') => {
+    if (type === 'services') {
+      setMobileServicesDropdown(!mobileServicesDropdown);
+      setMobileHomeDropdown(false);
+    } else {
+      setMobileHomeDropdown(!mobileHomeDropdown);
+      setMobileServicesDropdown(false);
+    }
+  };
+
+  const handleMobileNavClick = (pageId: string) => {
+    if (pageId === 'policies') {
+      window.open('https://kalonhealthcare.com/policies.html', '_blank');
+    } else {
+      setCurrentPage(pageId);
+    }
+    setMobileMenuOpen(false);
+    setMobileServicesDropdown(false);
+    setMobileHomeDropdown(false);
+  };
+
   const renderNavigation = () => (
     <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-8">
@@ -67,35 +111,45 @@ function App() {
             {navigationItems.map((item) => (
               <div key={item.id} className="relative">
                 {item.dropdown ? (
-                  <div
-                    className="relative"
-                    onMouseLeave={() => {
-                      if (item.id === 'services') setServicesDropdown(false);
-                      if (item.id === 'home') setHomeDropdown(false);
-                    }}
-                  >
+                  <div className="relative dropdown-container">
                     <div 
                       className="flex items-center space-x-1 text-gray-800 hover:text-black cursor-pointer py-2 font-medium"
-                      onMouseEnter={() => {
-                        if (item.id === 'services') setServicesDropdown(true);
-                        if (item.id === 'home') setHomeDropdown(true);
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (item.id === 'services') {
+                          setServicesDropdown(!servicesDropdown);
+                          setHomeDropdown(false);
+                        } else if (item.id === 'home') {
+                          setHomeDropdown(!homeDropdown);
+                          setServicesDropdown(false);
+                        }
                       }}
                     >
                       <span>{item.label}</span>
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown 
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          (item.id === 'services' && servicesDropdown) || (item.id === 'home' && homeDropdown) 
+                            ? 'rotate-180' 
+                            : ''
+                        }`} 
+                      />
                     </div>
                     
                     {((item.id === 'services' && servicesDropdown) || (item.id === 'home' && homeDropdown)) && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-56 bg-white shadow-xl border border-gray-100 rounded-lg py-3 z-50"
+                        className="absolute top-full left-0 mt-2 w-56 bg-white shadow-xl border border-gray-100 rounded-lg py-3 z-50 opacity-0 scale-95 animate-dropdown"
+                        style={{
+                          animation: 'dropdownOpen 0.2s ease-out forwards'
+                        }}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {item.dropdown.map((subItem) => (
                           <button
                             key={subItem.id}
-                            className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-black font-medium"
+                            className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-black font-medium transition-colors duration-150"
                             onClick={() => {
                               if (subItem.id === 'policies') {
-                               window.open('https://kalonhealthcare.com/policies.html', '_blank');
+                                window.open('https://kalonhealthcare.com/policies.html', '_blank');
                               } else {
                                 setCurrentPage(subItem.id);
                               }
@@ -111,7 +165,7 @@ function App() {
                   </div>
                 ) : (
                   <button
-                    className="text-gray-800 hover:text-black font-medium py-2"
+                    className="text-gray-800 hover:text-black font-medium py-2 transition-colors duration-150"
                     onClick={() => setCurrentPage(item.id)}
                   >
                     {item.label}
@@ -121,13 +175,142 @@ function App() {
             ))}
           </div>
 
-          <button className="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
-            <a href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858" target="_blank" rel="noopener noreferrer" className="block">
-              Book Now
-            </a>
-          </button>
+          <div className="flex items-center space-x-4">
+            <button className="hidden md:block bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+              <a href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858" target="_blank" rel="noopener noreferrer" className="block">
+                Book Now
+              </a>
+            </button>
+            
+            {/* Mobile Hamburger Button */}
+            <button 
+              className="md:hidden hamburger-button p-2 text-gray-800 hover:text-black transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
+      
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+      
+      {/* Mobile Sidebar */}
+      <div 
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden mobile-menu-container ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-8">
+            <div className="text-2xl font-serif font-light text-black tracking-wide">
+              KALON
+            </div>
+            <button 
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 text-gray-800 hover:text-black transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          
+          <nav className="space-y-2">
+            {navigationItems.map((item) => (
+              <div key={item.id}>
+                {item.dropdown ? (
+                  <div className="dropdown-container">
+                    <button
+                      className="flex items-center justify-between w-full text-left px-4 py-3 text-gray-800 hover:bg-gray-50 hover:text-black font-medium rounded-lg transition-colors duration-150"
+                      onClick={() => toggleMobileDropdown(item.id as 'services' | 'home')}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown 
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          (item.id === 'services' && mobileServicesDropdown) || (item.id === 'home' && mobileHomeDropdown) 
+                            ? 'rotate-180' 
+                            : ''
+                        }`} 
+                      />
+                    </button>
+                    
+                    {((item.id === 'services' && mobileServicesDropdown) || (item.id === 'home' && mobileHomeDropdown)) && (
+                      <div 
+                        className="ml-4 mt-2 space-y-1 opacity-0 animate-dropdown"
+                        style={{
+                          animation: 'dropdownOpen 0.2s ease-out forwards'
+                        }}
+                      >
+                        {item.dropdown.map((subItem) => (
+                          <button
+                            key={subItem.id}
+                            className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-black rounded-lg transition-colors duration-150"
+                            onClick={() => handleMobileNavClick(subItem.id)}
+                          >
+                            {subItem.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    className="block w-full text-left px-4 py-3 text-gray-800 hover:bg-gray-50 hover:text-black font-medium rounded-lg transition-colors duration-150"
+                    onClick={() => handleMobileNavClick(item.id)}
+                  >
+                    {item.label}
+                  </button>
+                )}
+              </div>
+            ))}
+          </nav>
+          
+          <div className="mt-8 pt-8 border-t border-gray-200">
+            <a href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858" target="_blank" rel="noopener noreferrer" className="block">
+              <button className="w-full bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                Book Now
+              </button>
+            </a>
+          </div>
+          
+          <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
+            <div className="flex items-center text-gray-600">
+              <Phone className="w-4 h-4 mr-3" style={{ color: '#D4AF37' }} />
+              <span className="text-sm">386 347 5514</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <Mail className="w-4 h-4 mr-3" style={{ color: '#D4AF37' }} />
+              <span className="text-sm">kalon@kalonhealthcare.com</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <MapPin className="w-4 h-4 mr-3" style={{ color: '#D4AF37' }} />
+              <span className="text-sm">Ormond Beach, FL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes dropdownOpen {
+          from {
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        .animate-dropdown {
+          animation: dropdownOpen 0.2s ease-out forwards;
+        }
+      `}</style>
     </nav>
   );
 
@@ -319,7 +502,9 @@ function App() {
   );
 
   return (
-    <>
+    <div className="min-h-screen bg-warm-white flex">
+      {/* Main Content */}
+      <div className="flex-1">
       <div className="min-h-screen bg-white">
         {renderNavigation()}
         {currentPage === 'home' && renderHomePage()}
@@ -975,33 +1160,17 @@ function App() {
             <div className="flex items-start justify-center md:justify-start mb-6">
               <Clock className="w-5 h-5 mr-3 mt-1" style={{ color: '#D4AF37' }} />
               <div>
-                <p className="font-medium mb-3">Office Hours</p>
-                <div className="text-gray-300 space-y-1 text-sm">
-                  <p><span className="font-medium">Monday:</span> 9am-5pm (In Office)</p>
-                  <p><span className="font-medium">Tuesday:</span> Virtual</p>
-                  <p><span className="font-medium">Wednesday:</span> Virtual</p>
-                  <p><span className="font-medium">Thursday:</span> Virtual</p>
-                  <p><span className="font-medium">Friday:</span> 9am-12:30pm (In Office)</p>
-                </div>
+                <p className="font-medium">Hours</p>
+                <p className="text-gray-300">Monday - Friday: 9:00 AM - 5:00 PM</p>
+                <p className="text-gray-300">Saturday: By Appointment</p>
+                <p className="text-gray-300">Sunday: Closed</p>
               </div>
             </div>
-            
-            <div className="flex justify-center md:justify-start space-x-6">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <Facebook className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">© 2024 Kalon Primary Care and Wellness. All rights reserved.</p>
           </div>
         </div>
       </footer>
-    </>
+      </div>
+    </div>
   );
 }
 
