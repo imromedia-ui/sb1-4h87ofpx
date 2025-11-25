@@ -56,6 +56,7 @@ function App() {
       dropdown: [
         { id: 'team', label: 'Team' },
         { id: 'policies', label: 'Policies' },
+        { id: 'insurances', label: 'Insurances' },
         { id: 'careers', label: 'Careers' }
       ]
     },
@@ -354,67 +355,7 @@ function App() {
               with a personalized touch, ensuring that every visit is both effective and restorative.
             </p>
             
-            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-              <h3 className="text-2xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
-                Hybrid Care Model
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                We offer flexible healthcare delivery through both <strong>in-office visits</strong> and <strong>telehealth consultations</strong>, 
-                providing you with convenient access to quality care when and how you need it.
-              </p>
-              
-              {/* Weight Loss Kit */}
-              <div className="bg-light-sage/20 border border-sage/30 rounded-lg p-6 mb-8">
-                <h3 className="text-2xl font-serif font-medium mb-4 text-deep-sage">Weight Loss Kit 30 Day Supply</h3>
-                <p className="text-warm-gray mb-6 leading-relaxed">
-                  This complete 1-month program combines three key supplements designed to support fat loss, appetite control, energy, and recovery:
-                </p>
-                
-                <div className="space-y-6">
-                  {/* Naltrexone */}
-                  <div className="border-l-4 border-sage pl-4">
-                    <h4 className="text-lg font-serif font-medium text-charcoal mb-2">1. Naltrexone (30 Day Supply)</h4>
-                    <ul className="text-warm-gray space-y-1 text-sm">
-                      <li>• Nightly oral dose (LDN)</li>
-                      <li>• Helps curb appetite & reduce hunger</li>
-                      <li>• Supports fat burning & weight loss</li>
-                      <li>• Promotes mental clarity</li>
-                    </ul>
-                  </div>
-                  
-                  {/* Sermorelin */}
-                  <div className="border-l-4 border-sage pl-4">
-                    <h4 className="text-lg font-serif font-medium text-charcoal mb-2">2. Sermorelin (30 Day Supply)</h4>
-                    <ul className="text-warm-gray space-y-1 text-sm">
-                      <li>• Nightly subcutaneous injection</li>
-                      <li>• Stimulates natural growth hormone levels</li>
-                      <li>• Speeds recovery from workouts</li>
-                      <li>• Restores healthy sleep cycles</li>
-                    </ul>
-                  </div>
-                  
-                  {/* Lipo-Trim SL */}
-                  <div className="border-l-4 border-sage pl-4">
-                    <h4 className="text-lg font-serif font-medium text-charcoal mb-2">3. Lipo-Trim SL (30 Day Supply)</h4>
-                    <ul className="text-warm-gray space-y-1 text-sm">
-                      <li>• Daily sublingual spray (30ml)</li>
-                      <li>• Contains Acetyl-L-Carnitine, B12 (Methylcobalamin), L-Leucine, L-Arginine, Inositol, L-Methionine, Betaine, Thiamine, and Folic Acid</li>
-                      <li>• Boosts metabolism & energy levels</li>
-                      <li>• Reduces food cravings</li>
-                      <li>• Supports immune health</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className="mt-6 p-4 bg-sage/10 rounded-lg">
-                  <p className="text-deep-sage font-medium flex items-start">
-                    <span className="text-lg mr-2">👉</span>
-                    Together, this 30-day kit is designed to enhance fat burning, suppress appetite, increase energy, and support overall wellness.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-3">Services We Provide:</h4>
                   <ul className="space-y-2 text-gray-700">
@@ -497,7 +438,6 @@ function App() {
               </button>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Hero Section */}
@@ -747,9 +687,9 @@ function App() {
                   Together, this 30-day kit is designed to enhance fat burning, suppress appetite, increase energy, and support overall wellness.
                 </p>
               </div>
-            </div>
-          </div>
-          
+             </div>
+           </div>
+           
            <div className="mb-16">
              <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
                Weight Loss Injections
@@ -790,6 +730,92 @@ function App() {
            </div>
          </div>
        </div>
+      )}
+      {currentPage === 'insurances' && (
+        <div className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Insurance Plans We Accept</h1>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <p className="text-xl text-gray-700 leading-relaxed">
+                  We accept most major insurance plans. Please verify your coverage before your appointment.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {[
+                  'Aetna PPO',
+                  'Cigna HMO',
+                  'Cigna Open Access',
+                  'Cigna PPO',
+                  'Cigna Supplemental',
+                  'First Health',
+                  'Humana PPO',
+                  'Medicaid "Straight Gold Medicaid"',
+                  'Medicare Plan B',
+                  'Medicare Supplemental Insurances',
+                  'MultiPlan/Claritey',
+                  'Oscar PPO, HMO, EPO, POS Medicare Advantage',
+                  'United Healthcare Dual Complete',
+                  'United Healthcare Medicaid',
+                  'Zing Health'
+                ].map((insurance, index) => (
+                  <div key={index} className="bg-gray-50 border border-gray-200 p-6 rounded-lg">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: '#D4AF37' }}></div>
+                      <span className="font-medium text-gray-800">{insurance}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg mb-8">
+                <h2 className="text-2xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
+                  Important Insurance Information
+                </h2>
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                  <p>
+                    <strong>Verification Required:</strong> Please contact your insurance provider to verify coverage 
+                    for primary care services and any specific treatments you may need.
+                  </p>
+                  <p>
+                    <strong>Prior Authorization:</strong> Some services may require prior authorization from your 
+                    insurance company. We will help coordinate this process when needed.
+                  </p>
+                  <p>
+                    <strong>Self-Pay Options:</strong> For patients without insurance or those seeking services 
+                    not covered by insurance, we offer competitive self-pay rates and flexible payment plans.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <h3 className="text-3xl font-serif font-light mb-8 text-black">
+                  Questions about your coverage?
+                </h3>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a 
+                    href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#D4AF37' }}
+                  >
+                    Schedule Consultation
+                  </a>
+                  <button 
+                    className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
+                    style={{ borderColor: '#D4AF37' }}
+                    onClick={() => setCurrentPage('contact')}
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       {currentPage === 'contact' && (
         <div className="py-24 bg-white">
