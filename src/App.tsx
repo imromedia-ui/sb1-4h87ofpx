@@ -30,6 +30,7 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesDropdown, setMobileServicesDropdown] = useState(false);
   const [mobileHomeDropdown, setMobileHomeDropdown] = useState(false);
+  const [selectedInsuranceCompany, setSelectedInsuranceCompany] = useState<string | null>(null);
 
   // Close dropdowns when clicking outside
   React.useEffect(() => {
@@ -735,67 +736,108 @@ function App() {
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Insurance Plans We Accept</h1>
-            
-            <div className="max-w-4xl mx-auto">
+
+            <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
                 <p className="text-xl text-gray-700 leading-relaxed">
-                  We accept most major insurance plans. Please verify your coverage before your appointment.
+                  We accept most major insurance plans. Click on a provider below to see specific plans.
                 </p>
               </div>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 {[
-                  'Aetna PPO',
-                  'Cigna HMO',
-                  'Cigna Open Access',
-                  'Cigna PPO',
-                  'Cigna Supplemental',
-                  'First Health',
-                  'Humana PPO',
-                  'Medicaid "Straight Gold Medicaid"',
-                  'Medicare Plan B',
-                  'Medicare Supplemental Insurances',
-                  'MultiPlan/Claritey',
-                  'Oscar PPO, HMO, EPO, POS Medicare Advantage',
-                  'United Healthcare Dual Complete',
-                  'United Healthcare Medicaid',
-                  'Zing Health'
-                ].map((insurance, index) => (
-                  <div key={index} className="bg-gray-50 border border-gray-200 p-6 rounded-lg">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: '#D4AF37' }}></div>
-                      <span className="font-medium text-gray-800">{insurance}</span>
+                  {
+                    name: 'Cigna',
+                    plans: ['Cigna HMO', 'Cigna PPO', 'Cigna Open Access', 'Cigna Supplemental'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'Medicare',
+                    plans: ['Medicare Plan B', 'Medicare Supplemental Insurances', 'Medicaid "Straight Gold Medicaid"'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'Oscar',
+                    plans: ['Oscar PPO', 'Oscar HMO', 'Oscar EPO', 'Oscar POS Medicare Advantage'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'United Healthcare',
+                    plans: ['United Healthcare Dual Complete', 'United Healthcare Medicaid'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'Aetna',
+                    plans: ['Aetna PPO'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'Humana',
+                    plans: ['Humana PPO'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'First Health',
+                    plans: ['First Health'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'MultiPlan',
+                    plans: ['MultiPlan/Claritey'],
+                    color: '#D4AF37'
+                  },
+                  {
+                    name: 'Zing Health',
+                    plans: ['Zing Health'],
+                    color: '#D4AF37'
+                  }
+                ].map((company, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedInsuranceCompany(company.name)}
+                    className="bg-gray-50 border-2 border-gray-200 p-8 rounded-lg hover:border-opacity-70 hover:shadow-lg transition-all cursor-pointer group text-center"
+                    style={{ borderColor: company.color }}
+                  >
+                    <div className="text-2xl font-serif font-medium mb-3" style={{ color: company.color }}>
+                      {company.name}
                     </div>
-                  </div>
+                    <div className="text-gray-600 text-sm mb-3">
+                      {company.plans.length} {company.plans.length === 1 ? 'Plan' : 'Plans'} Available
+                    </div>
+                    <div className="flex items-center justify-center text-gray-500 group-hover:text-black transition-colors">
+                      <span className="text-sm mr-2">View Plans</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </div>
+                  </button>
                 ))}
               </div>
-              
+
               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg mb-8">
                 <h2 className="text-2xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
                   Important Insurance Information
                 </h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    <strong>Verification Required:</strong> Please contact your insurance provider to verify coverage 
+                    <strong>Verification Required:</strong> Please contact your insurance provider to verify coverage
                     for primary care services and any specific treatments you may need.
                   </p>
                   <p>
-                    <strong>Prior Authorization:</strong> Some services may require prior authorization from your 
+                    <strong>Prior Authorization:</strong> Some services may require prior authorization from your
                     insurance company. We will help coordinate this process when needed.
                   </p>
                   <p>
-                    <strong>Self-Pay Options:</strong> For patients without insurance or those seeking services 
+                    <strong>Self-Pay Options:</strong> For patients without insurance or those seeking services
                     not covered by insurance, we offer competitive self-pay rates and flexible payment plans.
                   </p>
                 </div>
               </div>
-              
+
               <div className="text-center">
                 <h3 className="text-3xl font-serif font-light mb-8 text-black">
                   Questions about your coverage?
                 </h3>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a 
+                  <a
                     href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -804,7 +846,7 @@ function App() {
                   >
                     Schedule Consultation
                   </a>
-                  <button 
+                  <button
                     className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
                     style={{ borderColor: '#D4AF37' }}
                     onClick={() => setCurrentPage('contact')}
@@ -815,6 +857,93 @@ function App() {
               </div>
             </div>
           </div>
+
+          {selectedInsuranceCompany && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+              onClick={() => setSelectedInsuranceCompany(null)}
+            >
+              <div
+                className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-xl">
+                  <h2 className="text-3xl font-serif font-medium" style={{ color: '#D4AF37' }}>
+                    {selectedInsuranceCompany} Plans
+                  </h2>
+                  <button
+                    onClick={() => setSelectedInsuranceCompany(null)}
+                    className="text-gray-500 hover:text-black transition-colors p-2"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="p-8">
+                  <div className="space-y-4">
+                    {[
+                      {
+                        name: 'Cigna',
+                        plans: ['Cigna HMO', 'Cigna PPO', 'Cigna Open Access', 'Cigna Supplemental']
+                      },
+                      {
+                        name: 'Medicare',
+                        plans: ['Medicare Plan B', 'Medicare Supplemental Insurances', 'Medicaid "Straight Gold Medicaid"']
+                      },
+                      {
+                        name: 'Oscar',
+                        plans: ['Oscar PPO', 'Oscar HMO', 'Oscar EPO', 'Oscar POS Medicare Advantage']
+                      },
+                      {
+                        name: 'United Healthcare',
+                        plans: ['United Healthcare Dual Complete', 'United Healthcare Medicaid']
+                      },
+                      {
+                        name: 'Aetna',
+                        plans: ['Aetna PPO']
+                      },
+                      {
+                        name: 'Humana',
+                        plans: ['Humana PPO']
+                      },
+                      {
+                        name: 'First Health',
+                        plans: ['First Health']
+                      },
+                      {
+                        name: 'MultiPlan',
+                        plans: ['MultiPlan/Claritey']
+                      },
+                      {
+                        name: 'Zing Health',
+                        plans: ['Zing Health']
+                      }
+                    ].find(c => c.name === selectedInsuranceCompany)?.plans.map((plan, index) => (
+                      <div key={index} className="bg-gray-50 border border-gray-200 p-5 rounded-lg flex items-center">
+                        <div className="w-3 h-3 rounded-full mr-4 flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}></div>
+                        <span className="text-lg text-gray-800 font-medium">{plan}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <p className="text-gray-600 text-center mb-6">
+                      Please verify your specific plan coverage by contacting our office or your insurance provider.
+                    </p>
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => setSelectedInsuranceCompany(null)}
+                        className="px-8 py-3 rounded-full font-medium text-black transition-all hover:opacity-90"
+                        style={{ backgroundColor: '#D4AF37' }}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
       {currentPage === 'contact' && (
@@ -1312,7 +1441,7 @@ function App() {
           </div>
         </div>
       )}
-      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'womens-health', 'mens-health', 'iv-treatments', 'weight-loss'].includes(currentPage) && (
+      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'weight-loss'].includes(currentPage) && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
