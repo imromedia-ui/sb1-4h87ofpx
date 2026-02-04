@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 
 function App() {
+ 
   const [currentPage, setCurrentPage] = useState('home');
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
@@ -524,7 +525,7 @@ function App() {
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>IV Therapy</h1>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-              Experience targeted wellness delivered directly to your bloodstream for maximum absorption and immediate benefits.
+              Experience targeted wellness through IV therapy delivered directly to your bloodstream for maximum absorption and immediate benefits. Our IV treatments provide comprehensive IV therapy solutions for optimal health and wellness.
             </p>
             
             <div className="mb-16">
@@ -537,37 +538,37 @@ function App() {
                   {
                     name: "Kalon's All-in-One Boost IV",
                     price: "$175",
-                    description: "A powerful all-in-one blend designed to boost energy, improve immunity, and enhance overall wellness."
+                    description: "A powerful all-in-one IV therapy blend designed to boost energy through IV treatments, improve immunity with IV therapy, and enhance overall wellness through our comprehensive IV infusion."
                   },
                   {
                     name: "Kalon's B-Slim IV",
                     price: "$200",
-                    description: "Formulated to support fat-burning, boost metabolism, and help you stay energized and focused."
+                    description: "Our specialized IV therapy formulated to support fat-burning with IV treatments, boost metabolism through IV infusion, and help you stay energized and focused with IV therapy."
                   },
                   {
                     name: "Kalon's White Glow IV",
                     price: "$150",
-                    description: "Promotes brighter, healthier-looking skin and natural radiance from within."
+                    description: "This beauty-focused IV therapy promotes brighter, healthier-looking skin and natural radiance from within through targeted IV treatments."
                   },
                   {
                     name: "Kalon's Timeless IV",
                     price: "$175",
-                    description: "Helps combat signs of aging, improve skin health, and revitalize your body."
+                    description: "Anti-aging IV therapy that helps combat signs of aging through IV treatments, improve skin health with IV infusion, and revitalize your body using IV therapy."
                   },
                   {
                     name: "Kalon's Pick-Me-Up IV",
                     price: "$150",
-                    description: "Perfect for restoring energy, fighting fatigue, and enhancing focus."
+                    description: "Perfect IV therapy for restoring energy through IV treatments, fighting fatigue with IV infusion, and enhancing focus using targeted IV therapy."
                   },
                   {
                     name: "Kalon's Immune IV",
                     price: "$125",
-                    description: "Boosts your immune system, reduces the risk of illness, and helps you recover faster."
+                    description: "Immune-boosting IV therapy that boosts your immune system through IV treatments, reduces the risk of illness with IV infusion, and helps you recover faster using IV therapy."
                   },
                   {
                     name: "Kalon's Recovery IV",
                     price: "$200",
-                    description: "Designed to rehydrate your body, restore nutrients, and speed up recovery after workouts or illness."
+                    description: "Advanced IV therapy designed to rehydrate your body through IV treatments, restore nutrients with IV infusion, and speed up recovery after workouts or illness using comprehensive IV therapy."
                   }
                 ].map((treatment, index) => (
                   <div key={index} className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
@@ -607,9 +608,12 @@ function App() {
             
             <div className="text-center">
               <h3 className="text-3xl font-serif font-light mb-8 text-black">
-                Ready to boost your wellness?
+                Ready to boost your wellness with IV therapy?
               </h3>
-              <a 
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Experience the benefits of IV treatments with our professional IV therapy services. Our IV infusion treatments deliver nutrients directly for optimal wellness and vitality through advanced IV therapy.
+              </p>
+              <a
                 href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -627,7 +631,7 @@ function App() {
          <div className="max-w-6xl mx-auto px-8">
            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Weight Loss</h1>
            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-             Targeted weight loss solutions to support your metabolism and energy levels.
+             Targeted weight loss solutions to support your metabolism and energy levels. Our weight loss programs are designed to help you achieve sustainable weight loss results through medical weight loss approaches.
            </p>
            
           {/* Weight Loss Kit */}
@@ -637,19 +641,19 @@ function App() {
                 Weight Loss Kit 30 Day Supply
               </h2>
               <p className="text-lg text-gray-700 text-center mb-8 leading-relaxed">
-                This complete 1-month program combines three key supplements designed to support fat loss, appetite control, energy, and recovery:
+                This complete 1-month weight loss program combines three key supplements designed to support fat loss, weight loss goals, appetite control, energy, and recovery for effective weight loss management:
               </p>
               
               <div className="space-y-8">
                 {/* Naltrexone */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">1. Naltrexone (30 Day Supply)</h3>
+                    <h3 className="text-2xl font-serif font-medium text-black mb-4">1. Naltrexone (30 Day Supply) - Weight Loss Support</h3>
                     <ul className="text-gray-700 space-y-2">
-                      <li>• Nightly oral dose (LDN)</li>
-                      <li>• Helps curb appetite & reduce hunger</li>
-                      <li>• Supports fat burning & weight loss</li>
-                      <li>• Promotes mental clarity</li>
+                      <li>• Nightly oral dose (LDN) for weight loss</li>
+                      <li>• Helps curb appetite & reduce hunger for weight loss</li>
+                      <li>• Supports fat burning & accelerates weight loss</li>
+                      <li>• Promotes mental clarity during your weight loss journey</li>
                     </ul>
                   </div>
                 </div>
@@ -657,12 +661,12 @@ function App() {
                 {/* Sermorelin */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">2. Sermorelin (30 Day Supply)</h3>
+                    <h3 className="text-2xl font-serif font-medium text-black mb-4">2. Sermorelin (30 Day Supply) - Advanced Weight Loss Formula</h3>
                     <ul className="text-gray-700 space-y-2">
-                      <li>• Nightly subcutaneous injection</li>
-                      <li>• Stimulates natural growth hormone levels</li>
-                      <li>• Speeds recovery from workouts</li>
-                      <li>• Restores healthy sleep cycles</li>
+                      <li>• Nightly subcutaneous injection for weight loss enhancement</li>
+                      <li>• Stimulates natural growth hormone levels to support weight loss</li>
+                      <li>• Speeds recovery from workouts during weight loss</li>
+                      <li>• Restores healthy sleep cycles essential for weight loss</li>
                     </ul>
                   </div>
                 </div>
@@ -670,13 +674,13 @@ function App() {
                 {/* Lipo-Trim SL */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">3. Lipo-Trim SL (30 Day Supply)</h3>
+                    <h3 className="text-2xl font-serif font-medium text-black mb-4">3. Lipo-Trim SL (30 Day Supply) - Weight Loss Accelerator</h3>
                     <ul className="text-gray-700 space-y-2">
-                      <li>• Daily sublingual spray (30ml)</li>
-                      <li>• Contains Acetyl-L-Carnitine, B12 (Methylcobalamin), L-Leucine, L-Arginine, Inositol, L-Methionine, Betaine, Thiamine, and Folic Acid</li>
-                      <li>• Boosts metabolism & energy levels</li>
-                      <li>• Reduces food cravings</li>
-                      <li>• Supports immune health</li>
+                      <li>• Daily sublingual spray (30ml) for targeted weight loss</li>
+                      <li>• Contains Acetyl-L-Carnitine, B12 (Methylcobalamin), L-Leucine, L-Arginine, Inositol, L-Methionine, Betaine, Thiamine, and Folic Acid for weight loss</li>
+                      <li>• Boosts metabolism & energy levels to maximize weight loss</li>
+                      <li>• Reduces food cravings for successful weight loss</li>
+                      <li>• Supports immune health during weight loss</li>
                     </ul>
                   </div>
                 </div>
@@ -685,7 +689,7 @@ function App() {
               <div className="mt-8 p-6 rounded-lg text-center" style={{ backgroundColor: '#D4AF37', color: 'black' }}>
                 <p className="text-lg font-medium flex items-center justify-center">
                   <span className="text-xl mr-2">👉</span>
-                  Together, this 30-day kit is designed to enhance fat burning, suppress appetite, increase energy, and support overall wellness.
+                  Together, this comprehensive 30-day weight loss kit is designed to enhance fat burning for weight loss, suppress appetite for weight loss success, increase energy during weight loss, and support overall wellness throughout your weight loss transformation.
                 </p>
               </div>
              </div>
@@ -699,18 +703,18 @@ function App() {
              <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
                  <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-2xl font-serif font-medium text-black">B12 Injection</h3>
+                   <h3 className="text-2xl font-serif font-medium text-black">B12 Injection for Weight Loss</h3>
                    <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$30</span>
                  </div>
-                 <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity.</p>
+                 <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity to support your weight loss efforts.</p>
                </div>
-               
+
                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
                  <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Injections</h3>
+                   <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Weight Loss Injections</h3>
                    <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$40</span>
                  </div>
-                 <p className="text-gray-700 leading-relaxed">Supports fat metabolism and weight management.</p>
+                 <p className="text-gray-700 leading-relaxed">Supports fat metabolism and weight management for effective weight loss results.</p>
                </div>
              </div>
            </div>
@@ -964,16 +968,19 @@ function App() {
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="text-center mb-16">
                 <p className="text-xl text-gray-700 leading-relaxed">
-                  As women age, hormone levels naturally change. Hormones regulate growth, stress response, 
-                  sexual function, and overall well-being. When production declines, imbalances can cause 
-                  both physical and psychological effects.
+                  As women age, hormone levels naturally change, affecting women's health significantly. Hormones regulate growth, stress response,
+                  sexual function, and overall women's health and well-being. When production declines, hormonal imbalances can cause
+                  both physical and psychological effects that impact women's health. Our women's health services address hormonal changes comprehensively.
                 </p>
               </div>
               
               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
                 <h2 className="text-3xl font-serif font-medium mb-8 text-center" style={{ color: '#D4AF37' }}>
-                  Key Hormones in Women's Health
+                  Key Hormones in Women's Health & Hormone Therapy
                 </h2>
+                <p className="text-gray-700 text-center mb-6 leading-relaxed">
+                  Our women's health services focus on bio-identical hormone therapy to support women's health at every stage. We provide comprehensive women's health care including hormone replacement for optimal women's health.
+                </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[
                     'Estrogen',
@@ -1007,11 +1014,11 @@ function App() {
                   
                   <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
                     <h3 className="text-2xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
-                      2. Perimenopause
+                      2. Perimenopause & Women's Health Support
                     </h3>
                     <p className="text-gray-700 leading-relaxed">
-                      The transitional stage, usually between ages 35–50, lasting 2–10 years before menstruation stops. 
-                      Symptoms may include hot flashes, mood swings, sleep changes, and irregular cycles.
+                      The transitional stage in women's health, usually between ages 35–50, lasting 2–10 years before menstruation stops.
+                      Women's health symptoms may include hot flashes, mood swings, sleep changes, and irregular cycles. Our women's health services provide hormone therapy support during this critical women's health transition.
                     </p>
                   </div>
                   
@@ -1038,16 +1045,19 @@ function App() {
               
               <div className="text-center mt-16">
                 <h3 className="text-3xl font-serif font-light mb-8 text-black">
-                  Ready to discuss your hormonal health?
+                  Ready to discuss your hormonal health and women's health needs?
                 </h3>
-                <a 
+                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                  Our comprehensive women's health services include hormone therapy, women's health consultations, and personalized women's health treatment plans. Experience expert women's health care focused on your unique hormonal health needs.
+                </p>
+                <a
                   href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
                   style={{ backgroundColor: '#D4AF37' }}
                 >
-                  Schedule Consultation
+                  Schedule Women's Health Consultation
                 </a>
               </div>
             </div>
@@ -1141,55 +1151,61 @@ function App() {
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="text-center mb-16">
                 <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                  As men age, their bodies naturally undergo changes. One of the most significant is the decline in 
-                  hormones such as testosterone, which can affect energy, strength, mood, and sexual performance. 
-                  Hormones play a key role in overall health — when levels fall out of balance, men can experience 
-                  both physical and psychological effects.
+                  As men age, their bodies naturally undergo changes affecting men's health. One of the most significant men's health concerns is the decline in
+                  hormones such as testosterone, which can affect energy, strength, mood, and sexual performance in men's health.
+                  Hormones play a key role in overall men's health — when levels fall out of balance, men can experience
+                  both physical and psychological men's health effects.
                 </p>
                 <p className="text-xl text-gray-700 leading-relaxed">
-                  The natural aging process often reduces testosterone production, leading to fatigue, loss of muscle mass, 
-                  reduced libido, and other symptoms. Kalon Primary Care and Wellness provides customized solutions to 
-                  restore balance and improve men's quality of life.
+                  The natural aging process often reduces testosterone production, leading to men's health issues like fatigue, loss of muscle mass,
+                  reduced libido, and other men's health symptoms. Kalon Primary Care and Wellness provides customized men's health solutions to
+                  restore balance and improve men's quality of life through comprehensive men's health services and hormone therapy for men's health optimization.
                 </p>
               </div>
               
               <div className="border-t border-gray-200 pt-12">
                 <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
-                  Hormonal Health & Treatment Options
+                  Men's Health: Hormonal Health & Treatment Options
                 </h2>
+                <p className="text-lg text-gray-700 text-center mb-8 leading-relaxed max-w-3xl mx-auto">
+                  Our men's health services provide advanced hormone therapy for men's health optimization. From testosterone replacement to men's health performance solutions, we offer comprehensive men's health care.
+                </p>
                 
                 <div className="space-y-12">
                   <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
                     <h3 className="text-3xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
-                      Testosterone Replacement Therapy (TRT)
+                      Testosterone Replacement Therapy (TRT) for Men's Health
                     </h3>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      Our men's health testosterone replacement therapy is a cornerstone of comprehensive men's health care, designed to address low testosterone and optimize men's health.
+                    </p>
                     <ul className="space-y-3 text-gray-700 text-lg">
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full mt-3 mr-4" style={{ backgroundColor: '#D4AF37' }}></div>
-                        <span>Restores healthy testosterone levels</span>
+                        <span>Restores healthy testosterone levels for optimal men's health</span>
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full mt-3 mr-4" style={{ backgroundColor: '#D4AF37' }}></div>
-                        <span>Improves energy, muscle strength, and focus</span>
+                        <span>Improves energy, muscle strength, and focus for men's health vitality</span>
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full mt-3 mr-4" style={{ backgroundColor: '#D4AF37' }}></div>
-                        <span>Supports healthy libido and sexual function</span>
+                        <span>Supports healthy libido and sexual function as part of men's health care</span>
                       </li>
                       <li className="flex items-start">
                         <div className="w-2 h-2 rounded-full mt-3 mr-4" style={{ backgroundColor: '#D4AF37' }}></div>
-                        <span>Enhances mood and overall well-being</span>
+                        <span>Enhances mood and overall well-being through men's health hormone optimization</span>
                       </li>
                     </ul>
                   </div>
                   
                   <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
                     <h3 className="text-3xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
-                      Trimix Injections
+                      Trimix Injections for Men's Health Performance
                     </h3>
                     <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                      For men experiencing erectile dysfunction or wanting enhanced performance, Trimix injections 
-                      are a reliable solution made with FDA-approved medications.
+                      For men experiencing erectile dysfunction or wanting enhanced men's health performance, Trimix injections
+                      are a reliable men's health solution made with FDA-approved medications. This men's health treatment offers superior results for men's health concerns.
                     </p>
                     
                     <div className="grid md:grid-cols-2 gap-6">
@@ -1228,16 +1244,19 @@ function App() {
               
               <div className="text-center mt-16">
                 <h3 className="text-3xl font-serif font-light mb-8 text-black">
-                  Ready to optimize your health and performance?
+                  Ready to optimize your health and performance with men's health services?
                 </h3>
-                <a 
+                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                  Experience comprehensive men's health care with our specialized men's health services. From testosterone therapy to men's health performance solutions, we provide expert men's health treatment focused on your unique men's health needs and hormone optimization for men's health vitality.
+                </p>
+                <a
                   href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
                   style={{ backgroundColor: '#D4AF37' }}
                 >
-                  Schedule Consultation
+                  Schedule Men's Health Consultation
                 </a>
               </div>
             </div>
