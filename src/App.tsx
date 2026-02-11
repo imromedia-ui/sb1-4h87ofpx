@@ -1068,8 +1068,20 @@ function App() {
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Reviews</h1>
-            <p className="text-xl text-gray-600 text-center mb-12">What our patients are saying.</p>
-            
+            <p className="text-xl text-gray-600 text-center mb-8">What our patients are saying.</p>
+
+            <div className="text-center mb-12">
+              <a
+                href="https://g.page/r/CT24SwlMuNW5EBM/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
+                style={{ backgroundColor: '#D4AF37' }}
+              >
+                Leave Us a Review
+              </a>
+            </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
