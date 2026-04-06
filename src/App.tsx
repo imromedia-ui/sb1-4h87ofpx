@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  ChevronDown, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  ChevronDown,
   ChevronRight,
   Heart,
   Shield,
@@ -21,6 +21,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import Peptides from './components/Peptides';
 
 function App() {
  
@@ -62,13 +63,14 @@ function App() {
         { id: 'careers', label: 'Careers' }
       ]
     },
-    { 
-      id: 'services', 
+    {
+      id: 'services',
       label: 'Services',
       dropdown: [
         { id: 'primary-care', label: 'Primary Care' },
         { id: 'iv-treatments', label: 'IV Treatments' },
         { id: 'weight-loss', label: 'Weight Loss' },
+        { id: 'peptides', label: 'Peptides' },
         { id: 'womens-health', label: "Women's Health" },
         { id: 'mens-health', label: "Men's Health" },
         { id: 'screenings', label: 'Screenings' }
@@ -1068,20 +1070,8 @@ function App() {
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Reviews</h1>
-            <p className="text-xl text-gray-600 text-center mb-8">What our patients are saying.</p>
-
-            <div className="text-center mb-12">
-              <a
-                href="https://g.page/r/CT24SwlMuNW5EBM/review"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
-                style={{ backgroundColor: '#D4AF37' }}
-              >
-                Leave Us a Review
-              </a>
-            </div>
-
+            <p className="text-xl text-gray-600 text-center mb-12">What our patients are saying.</p>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
@@ -1472,7 +1462,8 @@ function App() {
           </div>
         </div>
       )}
-      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'weight-loss'].includes(currentPage) && (
+      {currentPage === 'peptides' && <Peptides />}
+      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'weight-loss', 'peptides'].includes(currentPage) && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
