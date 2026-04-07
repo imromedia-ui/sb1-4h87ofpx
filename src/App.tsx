@@ -21,6 +21,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import { supabase } from './lib/supabase';
 
 interface Peptide {
   id: string;
@@ -43,21 +44,17 @@ const PeptideTherapy = () => {
   useEffect(() => {
     const fetchPeptides = async () => {
       try {
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-        const apiUrl = `${supabaseUrl}/functions/v1/peptides`;
+        const { data, error } = await supabase
+          .from('peptides')
+          .select('*')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true });
 
-        const response = await fetch(apiUrl, {
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch peptides');
+        if (error) {
+          throw error;
         }
-        const data = await response.json();
-        setPeptides(data);
+
+        setPeptides(data || []);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
         console.error('Error fetching peptides:', err);
