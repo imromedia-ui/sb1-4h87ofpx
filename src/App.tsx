@@ -74,19 +74,6 @@ const PeptideTherapy = () => {
     return acc;
   }, {} as Record<string, Peptide[]>);
 
-  if (loading) {
-    return (
-      <div className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-300" style={{ borderTopColor: '#D4AF37' }}></div>
-            <p className="mt-4 text-gray-600">Loading peptides...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="py-24 bg-white">
