@@ -62,11 +62,11 @@ function App() {
         { id: 'careers', label: 'Careers' }
       ]
     },
+    { id: 'primary-care', label: 'Primary Care' },
     {
       id: 'services',
-      label: 'Services',
+      label: 'Wellness',
       dropdown: [
-        { id: 'primary-care', label: 'Primary Care' },
         { id: 'iv-treatments', label: 'IV Treatments' },
         { id: 'weight-loss', label: 'Weight Loss' },
         { id: 'womens-health', label: "Women's Health" },
@@ -104,7 +104,7 @@ function App() {
     <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex justify-between items-center h-20">
-          <div 
+          <div
             className="text-3xl font-serif font-light text-black cursor-pointer tracking-wide"
             onClick={() => setCurrentPage('home')}
           >
@@ -342,24 +342,27 @@ function App() {
             <p className="text-2xl text-gray-700 font-light leading-relaxed max-w-4xl mx-auto">
               Redefining wellness with exceptional primary care, aesthetics, and personalized treatments.
             </p>
+            <div className="mt-6 text-lg text-gray-600 font-medium">
+              Serving: Ormond Beach • Daytona Beach • Palm Coast • Port Orange
+            </div>
           </div>
           
           <div className="max-w-4xl mx-auto space-y-8 mb-16">
             <p className="text-lg text-gray-700 leading-relaxed">
-              At Kalon Primary Care and Wellness, we believe health is the foundation of beauty, energy, and confidence. 
-              We are committed to delivering the highest quality medical care in a serene, luxury environment. From preventive 
-              health screenings to advanced anti-aging treatments, every service is designed to optimize your well-being.
+              At Kalon Primary Care and Wellness, we believe health is the foundation of beauty, energy, and confidence.
+              We are committed to delivering the highest quality medical care in a serene, luxury environment. From preventive
+              health screenings to advanced anti-aging treatments, everything we offer is designed to optimize your well-being.
             </p>
-            
+
             <p className="text-lg text-gray-700 leading-relaxed">
-              Our services include comprehensive primary care, women's health, men's health, medical aesthetics, IV therapy, 
-              wellness programs, and advanced screenings — all tailored to meet your unique needs. We combine medical expertise 
+              We provide comprehensive primary care, women's health, men's health, medical aesthetics, IV therapy,
+              wellness programs, and advanced screenings — all tailored to meet your unique needs. We combine medical expertise
               with a personalized touch, ensuring that every visit is both effective and restorative.
             </p>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-gray-800 mb-3">Services We Provide:</h4>
+                  <h4 className="font-semibold text-gray-800 mb-3">What We Provide:</h4>
                   <ul className="space-y-2 text-gray-700">
                     <li>• Chronic Care Management</li>
                     <li>• Acute Care</li>
@@ -459,14 +462,14 @@ function App() {
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Wellness Overview */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-8">
-          <h2 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Services</h2>
+          <h2 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Wellness</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { id: 'primary-care', title: 'Primary Care', description: 'Comprehensive care for your overall health', icon: Stethoscope },
-              { id: 'iv-treatments', title: 'IV Therapy', description: 'Targeted wellness delivered directly to you', icon: Droplets },
+              { id: 'iv-treatments', title: 'Physician-Guided IV Therapy', description: 'Our IV therapy services are medically supervised and designed to support hydration, energy, immune function, and recovery using evidence-based nutrient formulations.', icon: Droplets },
               { id: 'womens-health', title: "Women's Health", description: 'Specialized care for women at every stage', icon: Heart },
               { id: 'mens-health', title: "Men's Health", description: 'Tailored healthcare solutions for men', icon: Shield },
               { id: 'screenings', title: 'Preventive Screenings', description: 'Stay ahead with proactive testing', icon: Activity }
@@ -515,8 +518,8 @@ function App() {
       {currentPage === 'services' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Services</h1>
-            <p className="text-xl text-gray-600 text-center mb-12">Comprehensive healthcare and wellness services tailored to your needs.</p>
+            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Wellness</h1>
+            <p className="text-xl text-gray-600 text-center mb-12">Comprehensive healthcare and wellness tailored to your needs.</p>
           </div>
         </div>
       )}
@@ -584,9 +587,36 @@ function App() {
             
             <div className="mb-16">
               <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
+                Packages Available
+              </h2>
+
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                  <h3 className="text-3xl font-serif font-medium text-center mb-8" style={{ color: '#D4AF37' }}>
+                    Wellness IV Package
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-white border-2 p-6 rounded-lg text-center" style={{ borderColor: '#D4AF37' }}>
+                      <div className="text-4xl font-bold mb-2" style={{ color: '#D4AF37' }}>$450</div>
+                      <div className="text-2xl font-serif font-medium text-gray-800 mb-3">3 IV Sessions</div>
+                      <p className="text-gray-600">Save on your wellness journey with our 3-session package</p>
+                    </div>
+
+                    <div className="bg-white border-2 p-6 rounded-lg text-center" style={{ borderColor: '#D4AF37' }}>
+                      <div className="text-4xl font-bold mb-2" style={{ color: '#D4AF37' }}>$800</div>
+                      <div className="text-2xl font-serif font-medium text-gray-800 mb-3">6 IV Sessions</div>
+                      <p className="text-gray-600">Best value for long-term wellness optimization</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-16">
+              <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
                 Weight Loss Injections
               </h2>
-              
+
               <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
                   <div className="flex justify-between items-center mb-4">
@@ -595,7 +625,7 @@ function App() {
                   </div>
                   <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity.</p>
                 </div>
-                
+
                 <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Injections</h3>
@@ -605,7 +635,7 @@ function App() {
                 </div>
               </div>
             </div>
-            
+
             <div className="text-center">
               <h3 className="text-3xl font-serif font-light mb-8 text-black">
                 Ready to boost your wellness with IV therapy?
@@ -697,9 +727,50 @@ function App() {
            
            <div className="mb-16">
              <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
+               Medical Weight Loss Program
+             </h2>
+
+             <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 max-w-4xl mx-auto">
+               <p className="text-xl text-gray-700 text-center mb-8 leading-relaxed">
+                 We offer physician-supervised weight loss using:
+               </p>
+
+               <div className="space-y-6">
+                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
+                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
+                     GLP-1 Therapy (Liraglutide)
+                   </h3>
+                   <p className="text-gray-700 leading-relaxed">
+                     Evidence-based medication therapy to support appetite regulation and sustainable weight loss under medical supervision.
+                   </p>
+                 </div>
+
+                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
+                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
+                     Fat Metabolism Support Injections
+                   </h3>
+                   <p className="text-gray-700 leading-relaxed">
+                     Targeted lipotropic injections designed to enhance your body's ability to metabolize fat and boost energy levels.
+                   </p>
+                 </div>
+
+                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
+                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
+                     Nutritional and Metabolic Guidance
+                   </h3>
+                   <p className="text-gray-700 leading-relaxed">
+                     Personalized nutritional counseling and metabolic optimization strategies to support long-term weight management success.
+                   </p>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <div className="mb-16">
+             <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
                Weight Loss Injections
              </h2>
-             
+
              <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
                  <div className="flex justify-between items-center mb-4">
@@ -718,7 +789,7 @@ function App() {
                </div>
              </div>
            </div>
-           
+
            <div className="text-center">
              <h3 className="text-3xl font-serif font-light mb-8 text-black">
                Ready to start your weight loss journey?
@@ -823,14 +894,14 @@ function App() {
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
                     <strong>Verification Required:</strong> Please contact your insurance provider to verify coverage
-                    for primary care services and any specific treatments you may need.
+                    for primary care and any specific treatments you may need.
                   </p>
                   <p>
-                    <strong>Prior Authorization:</strong> Some services may require prior authorization from your
+                    <strong>Prior Authorization:</strong> Some treatments may require prior authorization from your
                     insurance company. We will help coordinate this process when needed.
                   </p>
                   <p>
-                    <strong>Self-Pay Options:</strong> For patients without insurance or those seeking services
+                    <strong>Self-Pay Options:</strong> For patients without insurance or those seeking treatments
                     not covered by insurance, we offer competitive self-pay rates and flexible payment plans.
                   </p>
                 </div>
@@ -1399,16 +1470,16 @@ function App() {
                 </h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Payment is due at the time of service. We accept cash, credit cards, and most insurance plans. 
-                    For services not covered by insurance, payment arrangements can be discussed prior to treatment.
+                    Payment is due at the time of visit. We accept cash, credit cards, and most insurance plans.
+                    For treatments not covered by insurance, payment arrangements can be discussed prior to treatment.
                   </p>
                   <p>
-                    Refunds for services are considered on a case-by-case basis and must be requested within 30 days 
-                    of service. Refund requests should be submitted in writing to our office for review.
+                    Refunds are considered on a case-by-case basis and must be requested within 30 days
+                    of your visit. Refund requests should be submitted in writing to our office for review.
                   </p>
                   <p>
-                    For IV therapy and injection services, refunds are not available once the service has been 
-                    administered. If you have concerns about your treatment, please contact our office immediately 
+                    For IV therapy and injection treatments, refunds are not available once the treatment has been
+                    administered. If you have concerns about your treatment, please contact our office immediately
                     to discuss your options.
                   </p>
                 </div>
@@ -1421,15 +1492,15 @@ function App() {
                 </h2>
                 <div className="space-y-6 text-gray-700 leading-relaxed">
                   <p>
-                    At Kalon Healthcare Primary Care, your privacy is very important to us. We collect personal 
-                    information when you schedule appointments, complete forms, communicate with us, or use our website. 
+                    At Kalon Healthcare Primary Care, your privacy is very important to us. We collect personal
+                    information when you schedule appointments, complete forms, communicate with us, or use our website.
                     This may include your name, phone number, email, address, health information, and payment details.
                   </p>
-                  
+
                   <p>
-                    We use this information to provide healthcare services, manage appointments, process payments, 
-                    send reminders, and improve your experience. We do not sell or rent your personal data. 
-                    Information may only be shared with authorized healthcare providers, billing services, or when 
+                    We use this information to provide healthcare, manage appointments, process payments,
+                    send reminders, and improve your experience. We do not sell or rent your personal data.
+                    Information may only be shared with authorized healthcare providers, billing partners, or when
                     required by law.
                   </p>
                   
@@ -1438,14 +1509,14 @@ function App() {
                       SMS Terms & Conditions
                     </h3>
                     <p className="mb-4">
-                      By providing your phone number, you consent to receive SMS messages from us related to 
-                      appointments, updates, and healthcare services. Your phone number will never be sold or 
+                      By providing your phone number, you consent to receive SMS messages from us related to
+                      appointments, updates, and healthcare. Your phone number will never be sold or
                       shared with third parties for marketing.
                     </p>
-                    
+
                     <p className="mb-4">
-                      You may receive messages such as appointment reminders, prescription updates, and service 
-                      notifications. Message frequency may vary, and standard messaging rates may apply. To stop 
+                      You may receive messages such as appointment reminders, prescription updates, and care
+                      notifications. Message frequency may vary, and standard messaging rates may apply. To stop
                       receiving texts, reply STOP at any time. For help, reply HELP or contact us at (386) 347-5514.
                     </p>
                     
