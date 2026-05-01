@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Phone,
   Mail,
@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 
 function App() {
-
   const [currentPage, setCurrentPage] = useState('home');
   const [servicesDropdown, setServicesDropdown] = useState(false);
   const [homeDropdown, setHomeDropdown] = useState(false);
@@ -333,7 +332,35 @@ function App() {
 
   const renderHomePage = () => (
     <div>
-      {/* About Section - Now at the top */}
+      {/* Intro Video - above everything */}
+      <section className="bg-white pt-8 pb-0">
+        <div className="max-w-4xl mx-auto px-8">
+          {/* Mobile: 1:1 square */}
+          <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl md:hidden" style={{ paddingBottom: '100%' }}>
+            <iframe
+              className="absolute w-full h-full"
+              style={{ top: '-60px', left: 0, height: 'calc(100% + 120px)', pointerEvents: 'none' }}
+              src="https://www.youtube.com/embed/KSVrMMAB4co?autoplay=1&mute=1&loop=1&playlist=KSVrMMAB4co&playsinline=1&rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1"
+              title="Kalon Healthcare Introduction"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+            />
+          </div>
+          {/* Desktop: 16:9 landscape */}
+          <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl hidden md:block" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute w-full h-full"
+              style={{ top: '-60px', left: 0, height: 'calc(100% + 120px)', pointerEvents: 'none' }}
+              src="https://www.youtube.com/embed/KSVrMMAB4co?autoplay=1&mute=1&loop=1&playlist=KSVrMMAB4co&playsinline=1&rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&disablekb=1"
+              title="Kalon Healthcare Introduction"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-8">
           <div className="text-center mb-16">
@@ -345,20 +372,6 @@ function App() {
             </p>
             <div className="mt-6 text-lg text-gray-600 font-medium">
               Serving: Ormond Beach • Daytona Beach • Palm Coast • Port Orange
-            </div>
-          </div>
-
-          {/* Intro Video */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/lSxofYyiBGw?rel=0&modestbranding=1"
-                title="About Kalon Primary Care and Wellness"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
             </div>
           </div>
           
