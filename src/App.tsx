@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Phone,
   Mail,
@@ -22,6 +22,24 @@ import {
   X
 } from 'lucide-react';
 
+function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    const targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-line');
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  });
+}
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [servicesDropdown, setServicesDropdown] = useState(false);
@@ -31,6 +49,15 @@ function App() {
   const [mobileServicesDropdown, setMobileServicesDropdown] = useState(false);
   const [mobileHomeDropdown, setMobileHomeDropdown] = useState(false);
   const [selectedInsuranceCompany, setSelectedInsuranceCompany] = useState<string | null>(null);
+  const [pageKey, setPageKey] = useState(0);
+
+  useScrollReveal();
+
+  const navigateTo = useCallback((page: string) => {
+    setCurrentPage(page);
+    setPageKey(k => k + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   // Close dropdowns when clicking outside
   React.useEffect(() => {
@@ -93,7 +120,7 @@ function App() {
     if (pageId === 'policies') {
       window.open('/policies.html', '_blank');
     } else {
-      setCurrentPage(pageId);
+      navigateTo(pageId);
     }
     setMobileMenuOpen(false);
     setMobileServicesDropdown(false);
@@ -106,7 +133,7 @@ function App() {
         <div className="flex justify-between items-center h-20">
           <div
             className="text-3xl font-serif font-light text-black cursor-pointer tracking-wide"
-            onClick={() => setCurrentPage('home')}
+            onClick={() => navigateTo('home')}
           >
             KALON
           </div>
@@ -155,7 +182,7 @@ function App() {
                               if (subItem.id === 'policies') {
                                 window.open('/policies.html', '_blank');
                               } else {
-                                setCurrentPage(subItem.id);
+                                navigateTo(subItem.id);
                               }
                               setServicesDropdown(false);
                               setHomeDropdown(false);
@@ -170,7 +197,7 @@ function App() {
                 ) : (
                   <button
                     className="text-gray-800 hover:text-black font-medium py-2 transition-colors duration-150"
-                    onClick={() => setCurrentPage(item.id)}
+                    onClick={() => navigateTo(item.id)}
                   >
                     {item.label}
                   </button>
@@ -332,9 +359,9 @@ function App() {
 
   const renderHomePage = () => (
     <div>
-      {/* Intro Video - above everything */}
+      {/* Intro Video */}
       <section className="bg-white pt-8 pb-0">
-        <div className="max-w-4xl mx-auto px-8">
+        <div className="max-w-4xl mx-auto px-8 reveal">
           {/* Mobile: 1:1 square */}
           <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl md:hidden" style={{ paddingBottom: '100%' }}>
             <iframe
@@ -364,125 +391,130 @@ function App() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-8">
           <div className="text-center mb-16">
-            <h2 className="text-6xl font-serif font-light mb-8" style={{ color: '#D4AF37' }}>
-              About Kalon Primary Care and Wellness
-            </h2>
-            <p className="text-2xl text-gray-700 font-light leading-relaxed max-w-4xl mx-auto">
+            <div className="reveal">
+              <h2 className="text-6xl font-serif font-light mb-8" style={{ color: '#D4AF37' }}>
+                About Kalon Primary Care and Wellness
+              </h2>
+            </div>
+            <div className="flex justify-center mb-6 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-2xl text-gray-700 font-light leading-relaxed max-w-4xl mx-auto reveal delay-200">
               Redefining wellness with exceptional primary care, aesthetics, and personalized treatments.
             </p>
-            <div className="mt-6 text-lg text-gray-600 font-medium">
+            <div className="mt-6 text-lg text-gray-600 font-medium reveal delay-300">
               Serving: Ormond Beach • Daytona Beach • Palm Coast • Port Orange
             </div>
           </div>
-          
+
           <div className="max-w-4xl mx-auto space-y-8 mb-16">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed reveal">
               At Kalon Primary Care and Wellness, we believe health is the foundation of beauty, energy, and confidence.
               We are committed to delivering the highest quality medical care in a serene, luxury environment. From preventive
               health screenings to advanced anti-aging treatments, everything we offer is designed to optimize your well-being.
             </p>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed reveal delay-100">
               We provide comprehensive primary care, women's health, men's health, medical aesthetics, IV therapy,
               wellness programs, and advanced screenings — all tailored to meet your unique needs. We combine medical expertise
               with a personalized touch, ensuring that every visit is both effective and restorative.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-3">What We Provide:</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li>• Chronic Care Management</li>
-                    <li>• Acute Care</li>
-                    <li>• Preventive Care</li>
-                    <li>• Wellness Consultations</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-3">Payment Options:</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li>• Insurance Accepted</li>
-                    <li>• Self-Pay Options</li>
-                    <li>• Flexible Payment Plans</li>
-                  </ul>
-                </div>
+            <div className="grid md:grid-cols-2 gap-6 reveal delay-200">
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-3">What We Provide:</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li>• Chronic Care Management</li>
+                  <li>• Acute Care</li>
+                  <li>• Preventive Care</li>
+                  <li>• Wellness Consultations</li>
+                </ul>
               </div>
-            </div>
-            
-            <div className="mt-12 space-y-12">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center bg-gray-50 p-8 rounded-lg">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D4AF37' }}>
-                    <Shield className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
-                    Medical Excellence
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Medical-grade treatments delivered with precision and compassion.
-                  </p>
-                </div>
-                
-                <div className="text-center bg-gray-50 p-8 rounded-lg">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D4AF37' }}>
-                    <Sparkles className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
-                    Luxury Experience
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    A calm, elegant setting where your health and comfort come first.
-                  </p>
-                </div>
-                
-                <div className="text-center bg-gray-50 p-8 rounded-lg">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D4AF37' }}>
-                    <Heart className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
-                    Personalized Wellness
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Plans designed for your lifestyle, goals, and long-term vitality.
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-3">Payment Options:</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li>• Insurance Accepted</li>
+                  <li>• Self-Pay Options</li>
+                  <li>• Flexible Payment Plans</li>
+                </ul>
               </div>
             </div>
           </div>
 
-          <div className="text-center">
+          <div className="mt-12">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center bg-gray-50 p-8 rounded-lg card-hover reveal reveal-scale delay-100">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center icon-float" style={{ backgroundColor: '#D4AF37' }}>
+                  <Shield className="w-8 h-8 text-black" />
+                </div>
+                <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
+                  Medical Excellence
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Medical-grade treatments delivered with precision and compassion.
+                </p>
+              </div>
+
+              <div className="text-center bg-gray-50 p-8 rounded-lg card-hover reveal reveal-scale delay-300">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center icon-float-2" style={{ backgroundColor: '#D4AF37' }}>
+                  <Sparkles className="w-8 h-8 text-black" />
+                </div>
+                <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
+                  Luxury Experience
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  A calm, elegant setting where your health and comfort come first.
+                </p>
+              </div>
+
+              <div className="text-center bg-gray-50 p-8 rounded-lg card-hover reveal reveal-scale delay-500">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center icon-float-3" style={{ backgroundColor: '#D4AF37' }}>
+                  <Heart className="w-8 h-8 text-black pulse-heart" />
+                </div>
+                <h3 className="text-xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
+                  Personalized Wellness
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Plans designed for your lifestyle, goals, and long-term vitality.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-16 reveal">
             <h3 className="text-3xl font-serif font-light mb-8 text-black">
               Experience the Kalon difference.
             </h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <a 
+              <a
                 href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
-                style={{ backgroundColor: '#D4AF37' }}
+                className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90 hover:scale-105"
+                style={{ backgroundColor: '#D4AF37', transition: 'transform 0.2s, opacity 0.2s' }}
               >
                 Book a Visit
               </a>
               <button className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
                       style={{ borderColor: '#D4AF37' }}
-                      onClick={() => setCurrentPage('contact')}>
+                      onClick={() => navigateTo('contact')}>
                 Text Us
               </button>
             </div>
           </div>
+        </div>
       </section>
 
       {/* Hero Section */}
-      <section className="bg-gray-50 py-24">
+      <section className="hero-breathe py-24">
         <div className="max-w-6xl mx-auto px-8 text-center">
-          <h1 className="text-6xl md:text-7xl font-serif font-light text-black mb-8 tracking-tight">
+          <h1 className="text-6xl md:text-7xl font-serif font-light text-black mb-8 tracking-tight reveal">
             Elevated Primary Care &<br />Holistic Wellness
           </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed reveal delay-200">
             Personalized medical care and rejuvenating wellness treatments, all in one serene space in Ormond Beach, FL.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center reveal delay-300">
             <button className="border-2 text-gray-700 px-10 py-4 rounded-full font-medium hover:text-black transition-colors text-lg" style={{ borderColor: '#D4AF37' }}>
               Shop - Coming Soon
             </button>
@@ -493,7 +525,12 @@ function App() {
       {/* Wellness Overview */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-8">
-          <h2 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Wellness</h2>
+          <div className="text-center mb-16 reveal">
+            <h2 className="text-5xl font-serif font-light" style={{ color: '#D4AF37' }}>Our Wellness</h2>
+            <div className="flex justify-center mt-4">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { id: 'primary-care', title: 'Primary Care', description: 'Comprehensive care for your overall health', icon: Stethoscope },
@@ -501,13 +538,14 @@ function App() {
               { id: 'womens-health', title: "Women's Health", description: 'Specialized care for women at every stage', icon: Heart },
               { id: 'mens-health', title: "Men's Health", description: 'Tailored healthcare solutions for men', icon: Shield },
               { id: 'screenings', title: 'Preventive Screenings', description: 'Stay ahead with proactive testing', icon: Activity }
-            ].map((service) => (
-              <div key={service.id} className="bg-white border border-gray-200 p-8 rounded-lg hover:shadow-lg transition-shadow cursor-pointer group"
-                   onClick={() => setCurrentPage(service.id)}>
-                <service.icon className="w-12 h-12 mb-6 transition-colors" style={{ color: '#D4AF37' }} />
+            ].map((service, i) => (
+              <div key={service.id}
+                   className={`bg-white border border-gray-200 p-8 rounded-lg cursor-pointer group card-hover reveal reveal-scale delay-${(i % 3) * 100 + 100}`}
+                   onClick={() => navigateTo(service.id)}>
+                <service.icon className="w-12 h-12 mb-6 icon-spin-in" style={{ color: '#D4AF37' }} />
                 <h3 className="text-2xl font-serif font-medium text-black mb-4">{service.title}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                <div className="flex items-center font-medium transition-colors" style={{ color: '#D4AF37' }}>
+                <div className="flex items-center font-medium transition-colors group-hover:translate-x-1" style={{ color: '#D4AF37', transition: 'transform 0.2s' }}>
                   <span>Learn More</span>
                   <ChevronRight className="w-4 h-4 ml-2" />
                 </div>
@@ -520,15 +558,20 @@ function App() {
       {/* Featured Wellness Programs */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-8">
-          <h2 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Featured Wellness Programs</h2>
+          <div className="text-center mb-16 reveal">
+            <h2 className="text-5xl font-serif font-light" style={{ color: '#D4AF37' }}>Featured Wellness Programs</h2>
+            <div className="flex justify-center mt-4">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: 'Kalon Vital Reset', description: 'Primary care consult + IV hydration + nutrition plan', icon: Heart },
               { title: 'Glow from Within', description: 'Inner Beauty infusion + skin health consult', icon: Sparkles },
               { title: 'Total Health Blueprint', description: 'Labs and comprehensive health assessment', icon: Activity }
             ].map((program, index) => (
-              <div key={index} className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
-                <program.icon className="w-12 h-12 mx-auto mb-6" style={{ color: '#D4AF37' }} />
+              <div key={index} className={`bg-gray-50 border border-gray-200 p-8 rounded-lg text-center card-hover reveal reveal-scale delay-${index * 200}`}>
+                <program.icon className="w-12 h-12 mx-auto mb-6 icon-float" style={{ color: '#D4AF37', animationDelay: `${index * 0.6}s` }} />
                 <h3 className="text-2xl font-serif font-medium text-black mb-4">{program.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{program.description}</p>
               </div>
@@ -542,6 +585,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       {renderNavigation()}
+      <div key={pageKey} className="page-enter">
       {currentPage === 'home' && renderHomePage()}
       {currentPage === 'services' && (
         <div className="py-24 bg-white">
@@ -554,16 +598,19 @@ function App() {
       {currentPage === 'iv-treatments' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>IV Therapy</h1>
-            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>IV Therapy</h1>
+            <div className="flex justify-center mb-8 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
               Experience targeted wellness through IV therapy delivered directly to your bloodstream for maximum absorption and immediate benefits. Our IV treatments provide comprehensive IV therapy solutions for optimal health and wellness.
             </p>
-            
+
             <div className="mb-16">
-              <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
+              <h2 className="text-4xl font-serif font-light text-center mb-12 reveal" style={{ color: '#D4AF37' }}>
                 Kalon's IV Therapy Menu
               </h2>
-              
+
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 {[
                   {
@@ -602,7 +649,7 @@ function App() {
                     description: "Advanced IV therapy designed to rehydrate your body through IV treatments, restore nutrients with IV infusion, and speed up recovery after workouts or illness using comprehensive IV therapy."
                   }
                 ].map((treatment, index) => (
-                  <div key={index} className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                  <div key={index} className={`bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal delay-${(index % 2) * 100}`}>
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-2xl font-serif font-medium text-black">{treatment.name}</h3>
                       <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{treatment.price}</span>
@@ -663,14 +710,17 @@ function App() {
       {currentPage === 'peptides' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Peptide Therapy</h1>
-            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Peptide Therapy</h1>
+            <div className="flex justify-center mb-8 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
               Targeted peptide therapies designed to support cellular regeneration, hormonal balance, and longevity. Each protocol is physician-guided and customized to your health goals.
             </p>
 
             <div className="space-y-8 max-w-5xl mx-auto">
               {/* Sermoreline */}
-              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-serif font-medium text-black">Sermoreline Therapy</h3>
                   <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$300/month</span>
@@ -699,7 +749,7 @@ function App() {
               </div>
 
               {/* GHK-Cu */}
-              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-100">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-serif font-medium text-black">GHK-Cu (Copper Peptide)</h3>
                   <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$350/month</span>
@@ -728,7 +778,7 @@ function App() {
               </div>
 
               {/* NAD+ */}
-              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left delay-200">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-serif font-medium text-black">NAD+ Therapy</h3>
                   <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$300/month</span>
@@ -757,7 +807,7 @@ function App() {
               </div>
 
               {/* Oxytocin */}
-              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-300">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-serif font-medium text-black">Oxytocin ("Love Hormone")</h3>
                   <div className="text-right">
@@ -814,8 +864,11 @@ function App() {
      {currentPage === 'weight-loss' && (
        <div className="py-24 bg-white">
          <div className="max-w-6xl mx-auto px-8">
-           <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Weight Loss</h1>
-           <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+           <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Weight Loss</h1>
+           <div className="flex justify-center mb-8 reveal delay-100">
+             <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+           </div>
+           <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
              Targeted weight loss solutions to support your metabolism and energy levels. Our weight loss programs are designed to help you achieve sustainable weight loss results through medical weight loss approaches.
            </p>
            
@@ -1025,7 +1078,7 @@ function App() {
                   <button
                     className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
                     style={{ borderColor: '#D4AF37' }}
-                    onClick={() => setCurrentPage('contact')}
+                    onClick={() => navigateTo('contact')}
                   >
                     Contact Us
                   </button>
@@ -1133,20 +1186,23 @@ function App() {
       {currentPage === 'womens-health' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>
               Bio-Identical Hormones & Women's Health
             </h1>
+            <div className="flex justify-center mb-12 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
             
             <div className="max-w-4xl mx-auto space-y-12">
-              <div className="text-center mb-16">
+              <div className="text-center mb-16 reveal">
                 <p className="text-xl text-gray-700 leading-relaxed">
                   As women age, hormone levels naturally change, affecting women's health significantly. Hormones regulate growth, stress response,
                   sexual function, and overall women's health and well-being. When production declines, hormonal imbalances can cause
                   both physical and psychological effects that impact women's health. Our women's health services address hormonal changes comprehensively.
                 </p>
               </div>
-              
-              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg reveal reveal-scale">
                 <h2 className="text-3xl font-serif font-medium mb-8 text-center" style={{ color: '#D4AF37' }}>
                   Key Hormones in Women's Health & Hormone Therapy
                 </h2>
@@ -1162,7 +1218,7 @@ function App() {
                     'DHEA',
                     'DHEA 7-Keto'
                   ].map((hormone, index) => (
-                    <div key={index} className="flex items-center bg-white p-4 rounded-lg border border-gray-100">
+                    <div key={index} className={`flex items-center bg-white p-4 rounded-lg border border-gray-100 reveal delay-${index * 100}`}>
                       <div className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: '#D4AF37' }}></div>
                       <span className="font-medium text-gray-800">{hormone}</span>
                     </div>
@@ -1175,7 +1231,7 @@ function App() {
                   Stages of Hormonal Change
                 </h2>
                 <div className="space-y-8">
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left">
                     <h3 className="text-2xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
                       1. Pre-menopause
                     </h3>
@@ -1183,8 +1239,8 @@ function App() {
                       The years before a woman's first menstrual cycle, representing normal reproductive function.
                     </p>
                   </div>
-                  
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-100">
                     <h3 className="text-2xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
                       2. Perimenopause & Women's Health Support
                     </h3>
@@ -1193,18 +1249,18 @@ function App() {
                       Women's health symptoms may include hot flashes, mood swings, sleep changes, and irregular cycles. Our women's health services provide hormone therapy support during this critical women's health transition.
                     </p>
                   </div>
-                  
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left delay-200">
                     <h3 className="text-2xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
                       3. Menopause
                     </h3>
                     <p className="text-gray-700 leading-relaxed">
-                      Marks the natural end of reproduction. Estrogen and progesterone decline, the ovaries stop 
+                      Marks the natural end of reproduction. Estrogen and progesterone decline, the ovaries stop
                       releasing eggs, and pregnancy is no longer possible.
                     </p>
                   </div>
-                  
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-300">
                     <h3 className="text-2xl font-serif font-medium mb-4" style={{ color: '#D4AF37' }}>
                       4. Post-menopause
                     </h3>
@@ -1239,9 +1295,12 @@ function App() {
       {currentPage === 'reviews' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Reviews</h1>
-            <p className="text-xl text-gray-600 text-center mb-12">What our patients are saying.</p>
-            
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Reviews</h1>
+            <div className="flex justify-center mb-8 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-12 reveal delay-200">What our patients are saying.</p>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
@@ -1281,7 +1340,7 @@ function App() {
                   service: "Preventive Care"
                 }
               ].map((review, index) => (
-                <div key={index} className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div key={index} className={`bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-scale delay-${(index % 3) * 100 + 100}`}>
                   <div className="flex items-center mb-4">
                     {[...Array(review.rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#D4AF37' }} />
@@ -1316,9 +1375,12 @@ function App() {
       {currentPage === 'mens-health' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>
               Men's Hormonal Health & Performance Solutions
             </h1>
+            <div className="flex justify-center mb-12 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
             
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="text-center mb-16">
@@ -1344,7 +1406,7 @@ function App() {
                 </p>
                 
                 <div className="space-y-12">
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left">
                     <h3 className="text-3xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
                       Testosterone Replacement Therapy (TRT) for Men's Health
                     </h3>
@@ -1371,7 +1433,7 @@ function App() {
                     </ul>
                   </div>
                   
-                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                  <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-200">
                     <h3 className="text-3xl font-serif font-medium mb-6" style={{ color: '#D4AF37' }}>
                       Trimix Injections for Men's Health Performance
                     </h3>
@@ -1446,15 +1508,18 @@ function App() {
       {currentPage === 'team' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Team</h1>
-            
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Our Team</h1>
+            <div className="flex justify-center mb-12 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden reveal reveal-scale">
                 <div className="md:flex">
-                  <div className="md:w-1/3">
-                    <img 
-                      src="/bd7b526b-a161-4c77-aa85-e799caa30337.jpeg" 
-                      alt="Nargiza Ayupova, DNP" 
+                  <div className="md:w-1/3 reveal-left delay-200">
+                    <img
+                      src="/bd7b526b-a161-4c77-aa85-e799caa30337.jpeg"
+                      alt="Nargiza Ayupova, DNP"
                       className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mx-auto"
                     />
                   </div>
@@ -1642,6 +1707,8 @@ function App() {
           </div>
         </div>
       )}
+
+      </div>{/* end page-enter */}
 
       {/* Contact Banner - Always at bottom */}
       <footer className="bg-black text-white py-12">
