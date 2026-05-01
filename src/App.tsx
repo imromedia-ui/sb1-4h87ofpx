@@ -347,6 +347,20 @@ function App() {
               Serving: Ormond Beach • Daytona Beach • Palm Coast • Port Orange
             </div>
           </div>
+
+          {/* Intro Video */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/lSxofYyiBGw?rel=0&modestbranding=1"
+                title="About Kalon Primary Care and Wellness"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
           
           <div className="max-w-4xl mx-auto space-y-8 mb-16">
             <p className="text-lg text-gray-700 leading-relaxed">
