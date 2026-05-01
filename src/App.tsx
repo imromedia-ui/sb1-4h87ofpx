@@ -68,6 +68,7 @@ function App() {
       label: 'Wellness',
       dropdown: [
         { id: 'iv-treatments', label: 'IV Treatments' },
+        { id: 'peptides', label: 'Peptides' },
         { id: 'weight-loss', label: 'Weight Loss' },
         { id: 'womens-health', label: "Women's Health" },
         { id: 'mens-health', label: "Men's Health" },
@@ -612,30 +613,6 @@ function App() {
               </div>
             </div>
 
-            <div className="mb-16">
-              <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
-                Weight Loss Injections
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-2xl font-serif font-medium text-black">B12 Injection</h3>
-                    <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$30</span>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity.</p>
-                </div>
-
-                <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Injections</h3>
-                    <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$40</span>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed">Supports fat metabolism and weight management.</p>
-                </div>
-              </div>
-            </div>
-
             <div className="text-center">
               <h3 className="text-3xl font-serif font-light mb-8 text-black">
                 Ready to boost your wellness with IV therapy?
@@ -656,6 +633,157 @@ function App() {
           </div>
         </div>
       )}
+      {currentPage === 'peptides' && (
+        <div className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Peptide Therapy</h1>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+              Targeted peptide therapies designed to support cellular regeneration, hormonal balance, and longevity. Each protocol is physician-guided and customized to your health goals.
+            </p>
+
+            <div className="space-y-8 max-w-5xl mx-auto">
+              {/* Sermoreline */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-serif font-medium text-black">Sermoreline Therapy</h3>
+                  <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$300/month</span>
+                </div>
+                <p className="text-sm text-gray-500 mb-4">Nightly Injections</p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Supports natural growth hormone production for overall wellness and recovery.
+                </p>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Benefits</p>
+                  <ul className="grid md:grid-cols-2 gap-2">
+                    {[
+                      'Improves sleep quality',
+                      'Enhances fat metabolism',
+                      'Supports lean muscle growth',
+                      'Increases energy and recovery',
+                      'May improve skin tone and aging markers'
+                    ].map((b, i) => (
+                      <li key={i} className="flex items-start text-gray-700">
+                        <span className="mr-2 mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* GHK-Cu */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-serif font-medium text-black">GHK-Cu (Copper Peptide)</h3>
+                  <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$350/month</span>
+                </div>
+                <p className="text-sm text-gray-500 mb-4">Morning Injections</p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  A regenerative peptide known for anti-aging and tissue repair.
+                </p>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Benefits</p>
+                  <ul className="grid md:grid-cols-2 gap-2">
+                    {[
+                      'Promotes skin rejuvenation and collagen production',
+                      'Supports hair growth and scalp health',
+                      'Accelerates wound healing',
+                      'Reduces inflammation',
+                      'Improves overall skin quality and elasticity'
+                    ].map((b, i) => (
+                      <li key={i} className="flex items-start text-gray-700">
+                        <span className="mr-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* NAD+ */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-serif font-medium text-black">NAD+ Therapy</h3>
+                  <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$300/month</span>
+                </div>
+                <p className="text-sm text-gray-500 mb-4">Daily Injections (1000 mg)</p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Cellular energy and longevity support.
+                </p>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Benefits</p>
+                  <ul className="grid md:grid-cols-2 gap-2">
+                    {[
+                      'Boosts cellular energy (ATP production)',
+                      'Enhances mental clarity and focus',
+                      'Supports anti-aging at the cellular level',
+                      'Improves metabolism',
+                      'Aids in recovery and detoxification'
+                    ].map((b, i) => (
+                      <li key={i} className="flex items-start text-gray-700">
+                        <span className="mr-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Oxytocin */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-serif font-medium text-black">Oxytocin ("Love Hormone")</h3>
+                  <div className="text-right">
+                    <div className="text-lg font-semibold" style={{ color: '#D4AF37' }}>$120 – $180/month</div>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-500 mb-4">Available as oral tablets or nasal spray</p>
+                <div className="flex gap-6 mb-6">
+                  <div className="bg-white border border-gray-200 rounded-lg px-5 py-3 text-center">
+                    <p className="text-sm text-gray-600 mb-1">Tablets (troches/lozenges)</p>
+                    <p className="text-xl font-bold" style={{ color: '#D4AF37' }}>$120/month</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg px-5 py-3 text-center">
+                    <p className="text-sm text-gray-600 mb-1">Nasal Spray</p>
+                    <p className="text-xl font-bold" style={{ color: '#D4AF37' }}>$180/month</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Benefits</p>
+                  <ul className="grid md:grid-cols-2 gap-2">
+                    {[
+                      'Enhances mood and emotional connection',
+                      'Reduces stress and anxiety',
+                      'Supports intimacy and bonding',
+                      'May improve overall sense of well-being'
+                    ].map((b, i) => (
+                      <li key={i} className="flex items-start text-gray-700">
+                        <span className="mr-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-16">
+              <h3 className="text-3xl font-serif font-light mb-8 text-black">
+                Ready to start your peptide therapy?
+              </h3>
+              <a
+                href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
+                style={{ backgroundColor: '#D4AF37' }}
+              >
+                Book a Consultation
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
      {currentPage === 'weight-loss' && (
        <div className="py-24 bg-white">
          <div className="max-w-6xl mx-auto px-8">
@@ -668,127 +796,73 @@ function App() {
           <div className="mb-16">
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-8">
               <h2 className="text-4xl font-serif font-light text-center mb-8" style={{ color: '#D4AF37' }}>
-                Weight Loss Kit 30 Day Supply
+                Weight Loss Kit
               </h2>
-              <p className="text-lg text-gray-700 text-center mb-8 leading-relaxed">
-                This complete 1-month weight loss program combines three key supplements designed to support fat loss, weight loss goals, appetite control, energy, and recovery for effective weight loss management:
+
+              <p className="text-lg text-gray-600 text-center mb-8">Includes:</p>
+
+              <div className="max-w-sm mx-auto space-y-3 mb-8">
+                {['Sermorelin', 'Oral Naltrexone', 'Lipo-Trim SL (oral spray)'].map((item, i) => (
+                  <div key={i} className="flex items-center bg-white border border-gray-200 rounded-lg px-6 py-4">
+                    <span className="w-2 h-2 rounded-full mr-4 flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}></span>
+                    <span className="text-gray-800 text-lg font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* GLP-1 Therapy */}
+          <div className="mb-16">
+            <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
+              GLP-1 Therapy Options
+            </h2>
+
+            <div className="space-y-6 max-w-4xl mx-auto mb-10">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+                <div className="border-l-4 pl-6" style={{ borderColor: '#D4AF37' }}>
+                  <h3 className="text-2xl font-serif font-medium text-black mb-2">Tirzepatide + Glycine + Vitamin B12</h3>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+                <div className="border-l-4 pl-6" style={{ borderColor: '#D4AF37' }}>
+                  <h3 className="text-2xl font-serif font-medium text-black mb-2">Semaglutide + Glycine + Vitamin B12</h3>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-lg p-8 max-w-4xl mx-auto">
+              <p className="text-gray-700 leading-relaxed text-center">
+                Added <strong>B12</strong> to help prevent nausea/vomiting, <strong>Glycine</strong> to help maintain muscle mass, and we use compounded vials that allow flexible dosing so patients can achieve the lowest effective dose while minimizing side effects and improving outcomes.
               </p>
-              
-              <div className="space-y-8">
-                {/* Naltrexone */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">1. Naltrexone (30 Day Supply) - Weight Loss Support</h3>
-                    <ul className="text-gray-700 space-y-2">
-                      <li>• Nightly oral dose (LDN) for weight loss</li>
-                      <li>• Helps curb appetite & reduce hunger for weight loss</li>
-                      <li>• Supports fat burning & accelerates weight loss</li>
-                      <li>• Promotes mental clarity during your weight loss journey</li>
-                    </ul>
-                  </div>
+            </div>
+          </div>
+
+          {/* Weight Loss Injections */}
+          <div className="mb-16">
+            <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
+              Weight Loss Injections
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-serif font-medium text-black">B12 Injection</h3>
+                  <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$30</span>
                 </div>
-                
-                {/* Sermorelin */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">2. Sermorelin (30 Day Supply) - Advanced Weight Loss Formula</h3>
-                    <ul className="text-gray-700 space-y-2">
-                      <li>• Nightly subcutaneous injection for weight loss enhancement</li>
-                      <li>• Stimulates natural growth hormone levels to support weight loss</li>
-                      <li>• Speeds recovery from workouts during weight loss</li>
-                      <li>• Restores healthy sleep cycles essential for weight loss</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                {/* Lipo-Trim SL */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <div className="border-l-4 pl-4" style={{ borderColor: '#D4AF37' }}>
-                    <h3 className="text-2xl font-serif font-medium text-black mb-4">3. Lipo-Trim SL (30 Day Supply) - Weight Loss Accelerator</h3>
-                    <ul className="text-gray-700 space-y-2">
-                      <li>• Daily sublingual spray (30ml) for targeted weight loss</li>
-                      <li>• Contains Acetyl-L-Carnitine, B12 (Methylcobalamin), L-Leucine, L-Arginine, Inositol, L-Methionine, Betaine, Thiamine, and Folic Acid for weight loss</li>
-                      <li>• Boosts metabolism & energy levels to maximize weight loss</li>
-                      <li>• Reduces food cravings for successful weight loss</li>
-                      <li>• Supports immune health during weight loss</li>
-                    </ul>
-                  </div>
-                </div>
+                <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity.</p>
               </div>
-              
-              <div className="mt-8 p-6 rounded-lg text-center" style={{ backgroundColor: '#D4AF37', color: 'black' }}>
-                <p className="text-lg font-medium flex items-center justify-center">
-                  <span className="text-xl mr-2">👉</span>
-                  Together, this comprehensive 30-day weight loss kit is designed to enhance fat burning for weight loss, suppress appetite for weight loss success, increase energy during weight loss, and support overall wellness throughout your weight loss transformation.
-                </p>
+
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Injections</h3>
+                  <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$40</span>
+                </div>
+                <p className="text-gray-700 leading-relaxed">Supports fat metabolism and weight management.</p>
               </div>
-             </div>
-           </div>
-           
-           <div className="mb-16">
-             <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
-               Medical Weight Loss Program
-             </h2>
-
-             <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 max-w-4xl mx-auto">
-               <p className="text-xl text-gray-700 text-center mb-8 leading-relaxed">
-                 We offer physician-supervised weight loss using:
-               </p>
-
-               <div className="space-y-6">
-                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
-                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
-                     GLP-1 Therapy (Liraglutide)
-                   </h3>
-                   <p className="text-gray-700 leading-relaxed">
-                     Evidence-based medication therapy to support appetite regulation and sustainable weight loss under medical supervision.
-                   </p>
-                 </div>
-
-                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
-                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
-                     Fat Metabolism Support Injections
-                   </h3>
-                   <p className="text-gray-700 leading-relaxed">
-                     Targeted lipotropic injections designed to enhance your body's ability to metabolize fat and boost energy levels.
-                   </p>
-                 </div>
-
-                 <div className="bg-white border-l-4 p-6 rounded-r-lg" style={{ borderColor: '#D4AF37' }}>
-                   <h3 className="text-2xl font-serif font-medium mb-2" style={{ color: '#D4AF37' }}>
-                     Nutritional and Metabolic Guidance
-                   </h3>
-                   <p className="text-gray-700 leading-relaxed">
-                     Personalized nutritional counseling and metabolic optimization strategies to support long-term weight management success.
-                   </p>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div className="mb-16">
-             <h2 className="text-4xl font-serif font-light text-center mb-12" style={{ color: '#D4AF37' }}>
-               Weight Loss Injections
-             </h2>
-
-             <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
-                 <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-2xl font-serif font-medium text-black">B12 Injection for Weight Loss</h3>
-                   <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$30</span>
-                 </div>
-                 <p className="text-gray-700 leading-relaxed">Boosts energy, mood, and mental clarity to support your weight loss efforts.</p>
-               </div>
-
-               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg text-center">
-                 <div className="flex justify-between items-center mb-4">
-                   <h3 className="text-2xl font-serif font-medium text-black">Lipo-C Weight Loss Injections</h3>
-                   <span className="text-2xl font-bold" style={{ color: '#D4AF37' }}>$40</span>
-                 </div>
-                 <p className="text-gray-700 leading-relaxed">Supports fat metabolism and weight management for effective weight loss results.</p>
-               </div>
-             </div>
-           </div>
+            </div>
+          </div>
 
            <div className="text-center">
              <h3 className="text-3xl font-serif font-light mb-8 text-black">
@@ -1531,7 +1605,7 @@ function App() {
           </div>
         </div>
       )}
-      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'weight-loss'].includes(currentPage) && (
+      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'peptides', 'weight-loss'].includes(currentPage) && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
