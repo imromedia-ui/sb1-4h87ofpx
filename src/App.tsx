@@ -18,6 +18,7 @@ import {
   Gift,
   Eye,
   Star,
+  Sun,
   Syringe,
   Microscope,
   Check,
@@ -103,7 +104,7 @@ function App() {
         { id: 'weight-loss', label: 'Weight Loss' },
         { id: 'womens-health', label: "Women's Health" },
         { id: 'mens-health', label: "Men's Health" },
-        { id: 'regenerative-aesthetics', label: 'Regenerative Aesthetics' },
+        { id: 'regenerative-aesthetics', label: 'Microneedling with PRP' },
         { id: 'screenings', label: 'Screenings' }
       ]
     },
@@ -604,12 +605,12 @@ function App() {
       {currentPage === 'regenerative-aesthetics' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Regenerative Aesthetics</h1>
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Microneedling with PRP</h1>
             <div className="flex justify-center mb-8 reveal delay-100">
               <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
             </div>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
-              Harness your body's own natural healing power. Using a medical-grade centrifuge, we prepare platelet-rich plasma (PRP) and platelet-rich fibrin (PRF) from your own blood to stimulate hair restoration, scalp rejuvenation, and skin renewal through microneedling.
+              Microneedling, also known as Collagen Induction Therapy, is a minimally invasive treatment to rejuvenate the skin and is safe for all skin types. Fine needles create micro-injuries in the top layer of the skin, which triggers the body's response to create new collagen and elastin. Results can include improved texture and firmness, as well as a reduction in scars, pore size, pigment, and stretch marks.
             </p>
 
             {/* What is PRP/PRF section */}
@@ -634,101 +635,107 @@ function App() {
                   </p>
                 </div>
               </div>
+              <p className="text-gray-700 leading-relaxed max-w-4xl mx-auto mt-6">
+                Micro punctures are created using our microneedling device, which produces a controlled skin injury without damaging the epidermis. These micro-injuries lead to minimal superficial bleeding and set up a wound-healing cascade with a release of various growth factors. When combining Microneedling with PRF or PRP, the patient's blood is drawn, processed in a centrifuge, and then used to optimize the treatment. The addition of PRF/PRP is clinically proven to make microneedling much more effective. Platelet-rich fibrin, which uses growth factors and other elements from our own blood to repair damaged skin, contains proteins, including growth factors and cytokines, that help skin tissue repair itself.
+              </p>
+            </div>
+
+            {/* Stats section */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+              {[
+                { stat: '94%', desc: 'of patients noticed an improvement in how their fine lines/wrinkles look at one month post-treatment' },
+                { stat: '80%', desc: 'of patients said they noticed an improvement in acne scars in the treated area at one month post-treatment' },
+                { stat: '90%', desc: 'of patients said they would recommend microneedling at one month post-treatment' }
+              ].map((s, i) => (
+                <div key={i} className="text-center reveal reveal-scale" style={{ transitionDelay: `${i * 100}ms` }}>
+                  <div className="text-5xl font-serif font-light mb-3" style={{ color: '#D4AF37' }}>{s.stat}</div>
+                  <p className="text-gray-600 leading-relaxed text-sm max-w-xs mx-auto">{s.desc}</p>
+                </div>
+              ))}
             </div>
 
             {/* Treatments grid */}
             <div className="space-y-8 max-w-5xl mx-auto mb-16">
-              {/* PRP/PRF for Scalp & Hair Restoration */}
+              {/* Microneedling with PRF/PRP - Face & Neck */}
               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left">
                 <div className="flex items-start gap-6">
                   <div className="w-14 h-14 rounded-full flex items-center justify-center icon-float flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}>
-                    <Syringe className="w-7 h-7 text-black" />
+                    <Sparkles className="w-7 h-7 text-black" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-serif font-medium text-black mb-2">PRP & PRF for Scalp — Hair Restoration</h3>
-                    <p className="text-sm text-gray-500 mb-4">A series of sessions, typically 3–4 spaced one month apart</p>
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      Platelet-rich plasma and fibrin are injected into the scalp to awaken dormant hair follicles, improve hair density, and slow thinning. Growth factors stimulate the follicle stem cells, extend the growth phase, and improve blood supply to the scalp — a natural approach to hair restoration for both men and women.
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-2xl font-serif font-medium text-black">Microneedling with PRF/PRP — Face & Neck</h3>
+                      <span className="text-2xl font-bold whitespace-nowrap ml-4" style={{ color: '#D4AF37' }}>$550</span>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Our signature facial microneedling treatment, also known as Collagen Induction Therapy. Platelet Rich Fibrin is used while microneedling the face and neck (décolletage can be added on for $200) to stimulate collagen, tighten the skin, minimize pore size, improve skin texture, diminish scarring, and improve the appearance of fine lines/wrinkles. This is the ultimate anti-aging facial.
                     </p>
-                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Ideal For</p>
-                    <ul className="grid md:grid-cols-2 gap-2 mb-6">
-                      {[
-                        'Male and female pattern hair thinning',
-                        'Early-stage hair loss',
-                        'Improving hair density and thickness',
-                        'Supporting recovery after hair transplant',
-                        'Stress-related or postpartum shedding',
-                        'Scalp health and follicle stimulation'
-                      ].map((b, i) => (
-                        <li key={i} className="flex items-start text-gray-700">
-                          <span className="mr-2 mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">What to Expect</p>
-                    <p className="text-gray-700 leading-relaxed">
-                      A small blood draw is processed in our centrifuge while you relax. The concentrated PRP/PRF is then precisely injected into targeted areas of the scalp using a fine needle. Sessions take about 45–60 minutes with minimal downtime. Mild tenderness or pinpoint redness may last a day. Visible improvement in hair thickness and growth typically appears after the second session, with full results at 3–6 months.
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Please note: This treatment requires your blood to be drawn — stay hydrated at least 24 hours prior to your appointment and arrive 45 minutes prior to your scheduled appointment time to numb.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* PRP/PRF Skin Microneedling */}
+              {/* Body Microneedling with PRF/PRP */}
               <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-100">
                 <div className="flex items-start gap-6">
                   <div className="w-14 h-14 rounded-full flex items-center justify-center icon-float-2 flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}>
-                    <Sparkles className="w-7 h-7 text-black" />
+                    <Syringe className="w-7 h-7 text-black" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-serif font-medium text-black mb-2">PRP/PRF Skin Microneedling</h3>
-                    <p className="text-sm text-gray-500 mb-4">A series of 3–4 sessions spaced 4–6 weeks apart</p>
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      Microneedling creates controlled micro-channels in the skin that trigger natural collagen production. When combined with your own PRP or PRF, growth factors penetrate deeply to accelerate healing, tighten skin, refine pores, and restore a luminous, even-toned complexion. The result is smoother, firmer, more youthful-looking skin.
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-2xl font-serif font-medium text-black">Body Microneedling with PRF/PRP</h3>
+                      <span className="text-2xl font-bold whitespace-nowrap ml-4" style={{ color: '#D4AF37' }}>$650</span>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Body Microneedling paired with PRF/PRP is a great choice when looking to treat areas on the body that are in need of collagen and elastin production. Popular areas on the body to treat with Microneedling are the knees, legs, arms or abdomen. Platelet Rich Fibrin, which uses growth factors and other elements from our own blood to repair damaged skin, is used while microneedling to enhance the results due to its healing properties. Body Microneedling helps to tighten the skin, improve hyperpigmentation, improve skin texture, diminish scarring/stretch marks and improve the appearance of fine lines/wrinkles.
                     </p>
-                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Ideal For</p>
-                    <ul className="grid md:grid-cols-2 gap-2 mb-6">
-                      {[
-                        'Fine lines and wrinkles',
-                        'Acne scars and textural irregularities',
-                        'Uneven skin tone and hyperpigmentation',
-                        'Enlarged pores',
-                        'Dull or tired-looking skin',
-                        'Stretch marks and surgical scars'
-                      ].map((b, i) => (
-                        <li key={i} className="flex items-start text-gray-700">
-                          <span className="mr-2 mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">What to Expect</p>
-                    <p className="text-gray-700 leading-relaxed">
-                      After a quick blood draw processed in our centrifuge, a topical numbing cream is applied. Microneedling is then performed across the face (or targeted area), followed by application of your PRP/PRF serum, which absorbs into the micro-channels. The full session takes about 60–75 minutes. Skin may appear pink or flushed for 24–48 hours. A series of 3–4 sessions delivers progressive improvement in tone, texture, and firmness.
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Please note: This treatment requires your blood to be drawn — stay hydrated at least 24 hours prior to your appointment and arrive 45 minutes prior to your scheduled appointment time to numb.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* How it works */}
+            {/* Reminders section */}
             <div className="mb-16">
               <h2 className="text-4xl font-serif font-light text-center mb-12 reveal" style={{ color: '#D4AF37' }}>
-                The Process
+                Reminders For Your Treatment
               </h2>
-              <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
                 {[
-                  { step: '01', title: 'Consultation', desc: 'We assess your goals, review your history, and build a personalized treatment plan.' },
-                  { step: '02', title: 'Blood Draw', desc: 'A small sample of your blood is drawn — similar to a routine lab test.' },
-                  { step: '03', title: 'Centrifuge', desc: 'Your blood is spun in our medical-grade centrifuge to isolate PRP or PRF.' },
-                  { step: '04', title: 'Treatment', desc: 'The concentrated growth factors are applied or injected for scalp or skin renewal.' }
-                ].map((phase, i) => (
-                  <div key={i} className="text-center reveal reveal-scale" style={{ transitionDelay: `${i * 100}ms` }}>
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 flex items-center justify-center font-serif text-xl" style={{ borderColor: '#D4AF37', color: '#D4AF37' }}>
-                      {phase.step}
+                  { icon: Clock, title: 'Numbing', desc: 'We want your microneedling treatment to be as comfortable as possible! Please remember to arrive 45 minutes prior to your scheduled appointment time for numbing.' },
+                  { icon: Sun, title: 'Sun Exposure', desc: 'Avoid sun exposure for 2 weeks before and 2 weeks after your microneedling treatment and always remember to wear a sunscreen with SPF 30+.' },
+                  { icon: Droplets, title: 'Stay Hydrated', desc: 'It is important to stay hydrated prior to your microneedling treatment. We also recommend avoiding alcohol for 24–48 hrs prior to your appointment.' },
+                  { icon: Sparkles, title: 'No Actives', desc: 'Stop all topical acids, such as glycolic, alpha or beta hydroxyl acids, retinols, retin-A, or other like products 3–5 days prior to your microneedling treatment.' }
+                ].map((reminder, i) => (
+                  <div key={i} className="bg-gray-50 border border-gray-200 p-6 rounded-lg text-center reveal reveal-scale" style={{ transitionDelay: `${i * 100}ms` }}>
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center icon-float" style={{ backgroundColor: '#D4AF37' }}>
+                      <reminder.icon className="w-7 h-7 text-black" />
                     </div>
-                    <h3 className="text-lg font-serif font-medium text-black mb-2">{phase.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{phase.desc}</p>
+                    <h3 className="text-lg font-serif font-medium text-black mb-2">{reminder.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{reminder.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FAQ section */}
+            <div className="mb-16 max-w-3xl mx-auto">
+              <h2 className="text-4xl font-serif font-light text-center mb-12 reveal" style={{ color: '#D4AF37' }}>
+                FAQ's
+              </h2>
+              <div className="space-y-4">
+                {[
+                  { q: 'How long do results of Microneedling typically last?', a: 'Results can last several months to a year depending on your skin type, age, and skincare routine. A series of 3–4 sessions is recommended for optimal results, with maintenance treatments every 6–12 months.' },
+                  { q: 'When will I see the results of Microneedling?', a: 'Initial improvements in skin texture and tone typically appear within 1–2 weeks after your first session. Collagen production continues over the following months, with full results visible at 3–6 months as the skin continues to regenerate.' },
+                  { q: 'Will I have any downtime after a Microneedling treatment?', a: 'Downtime is minimal. Skin may appear pink or flushed for 24–48 hours, similar to a mild sunburn. Most patients return to normal activities the next day. Avoid sun exposure, active skincare ingredients, and strenuous exercise for 24–48 hours post-treatment.' }
+                ].map((faq, i) => (
+                  <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-6 reveal">
+                    <h3 className="text-lg font-serif font-medium text-black mb-2">{faq.q}</h3>
+                    <p className="text-gray-700 leading-relaxed">{faq.a}</p>
                   </div>
                 ))}
               </div>
@@ -740,7 +747,7 @@ function App() {
                 Ready to restore from within?
               </h3>
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                PRP and PRF treatments use your body's own growth factors — no synthetic fillers, no chemicals. Book a consultation to see if regenerative aesthetics is right for you.
+                Microneedling with PRP and PRF uses your body's own growth factors — no synthetic fillers, no chemicals. Book a consultation to see if this treatment is right for you.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
@@ -750,7 +757,7 @@ function App() {
                   className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
                   style={{ backgroundColor: '#D4AF37' }}
                 >
-                  Book a Consultation
+                  Book Now
                 </a>
                 <button
                   className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
