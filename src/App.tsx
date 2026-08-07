@@ -14,7 +14,12 @@ import {
   Users,
   Stethoscope,
   Droplets,
+  Droplet,
+  Gift,
+  Eye,
   Star,
+  Syringe,
+  Microscope,
   Check,
   Instagram,
   Facebook,
@@ -98,6 +103,7 @@ function App() {
         { id: 'weight-loss', label: 'Weight Loss' },
         { id: 'womens-health', label: "Women's Health" },
         { id: 'mens-health', label: "Men's Health" },
+        { id: 'regenerative-aesthetics', label: 'Regenerative Aesthetics' },
         { id: 'screenings', label: 'Screenings' }
       ]
     },
@@ -592,6 +598,169 @@ function App() {
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Our Wellness</h1>
             <p className="text-xl text-gray-600 text-center mb-12">Comprehensive healthcare and wellness tailored to your needs.</p>
+          </div>
+        </div>
+      )}
+      {currentPage === 'regenerative-aesthetics' && (
+        <div className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-8">
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Regenerative Aesthetics</h1>
+            <div className="flex justify-center mb-8 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
+              Harness your body's own natural healing power. Using a medical-grade centrifuge, we prepare platelet-rich plasma (PRP) and platelet-rich fibrin (PRF) from your own blood to stimulate hair restoration, scalp rejuvenation, and skin renewal through microneedling.
+            </p>
+
+            {/* What is PRP/PRF section */}
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 mb-16 reveal">
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center icon-float" style={{ backgroundColor: '#D4AF37' }}>
+                  <Microscope className="w-8 h-8 text-black" />
+                </div>
+              </div>
+              <h2 className="text-3xl font-serif font-light text-center mb-6 text-black">What Are PRP & PRF?</h2>
+              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div>
+                  <h3 className="text-xl font-serif font-medium mb-3" style={{ color: '#D4AF37' }}>PRP (Platelet-Rich Plasma)</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    A small sample of your blood is spun in a centrifuge to concentrate the platelets and growth factors. This golden plasma is then applied or injected to stimulate tissue repair, collagen production, and cellular regeneration.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-serif font-medium mb-3" style={{ color: '#D4AF37' }}>PRF (Platelet-Rich Fibrin)</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    A next-generation preparation that uses a slower spin to preserve white blood cells and fibrin, creating a natural scaffold that releases growth factors gradually over several days for longer-lasting results.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Treatments grid */}
+            <div className="space-y-8 max-w-5xl mx-auto mb-16">
+              {/* PRP/PRF for Scalp & Hair Restoration */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-left">
+                <div className="flex items-start gap-6">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center icon-float flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}>
+                    <Syringe className="w-7 h-7 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-serif font-medium text-black mb-2">PRP & PRF for Scalp — Hair Restoration</h3>
+                    <p className="text-sm text-gray-500 mb-4">A series of sessions, typically 3–4 spaced one month apart</p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Platelet-rich plasma and fibrin are injected into the scalp to awaken dormant hair follicles, improve hair density, and slow thinning. Growth factors stimulate the follicle stem cells, extend the growth phase, and improve blood supply to the scalp — a natural approach to hair restoration for both men and women.
+                    </p>
+                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Ideal For</p>
+                    <ul className="grid md:grid-cols-2 gap-2 mb-6">
+                      {[
+                        'Male and female pattern hair thinning',
+                        'Early-stage hair loss',
+                        'Improving hair density and thickness',
+                        'Supporting recovery after hair transplant',
+                        'Stress-related or postpartum shedding',
+                        'Scalp health and follicle stimulation'
+                      ].map((b, i) => (
+                        <li key={i} className="flex items-start text-gray-700">
+                          <span className="mr-2 mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">What to Expect</p>
+                    <p className="text-gray-700 leading-relaxed">
+                      A small blood draw is processed in our centrifuge while you relax. The concentrated PRP/PRF is then precisely injected into targeted areas of the scalp using a fine needle. Sessions take about 45–60 minutes with minimal downtime. Mild tenderness or pinpoint redness may last a day. Visible improvement in hair thickness and growth typically appears after the second session, with full results at 3–6 months.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* PRP/PRF Skin Microneedling */}
+              <div className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-right delay-100">
+                <div className="flex items-start gap-6">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center icon-float-2 flex-shrink-0" style={{ backgroundColor: '#D4AF37' }}>
+                    <Sparkles className="w-7 h-7 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-serif font-medium text-black mb-2">PRP/PRF Skin Microneedling</h3>
+                    <p className="text-sm text-gray-500 mb-4">A series of 3–4 sessions spaced 4–6 weeks apart</p>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Microneedling creates controlled micro-channels in the skin that trigger natural collagen production. When combined with your own PRP or PRF, growth factors penetrate deeply to accelerate healing, tighten skin, refine pores, and restore a luminous, even-toned complexion. The result is smoother, firmer, more youthful-looking skin.
+                    </p>
+                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">Ideal For</p>
+                    <ul className="grid md:grid-cols-2 gap-2 mb-6">
+                      {[
+                        'Fine lines and wrinkles',
+                        'Acne scars and textural irregularities',
+                        'Uneven skin tone and hyperpigmentation',
+                        'Enlarged pores',
+                        'Dull or tired-looking skin',
+                        'Stretch marks and surgical scars'
+                      ].map((b, i) => (
+                        <li key={i} className="flex items-start text-gray-700">
+                          <span className="mr-2 mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#D4AF37', marginTop: '7px' }}></span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-sm font-semibold text-gray-800 uppercase tracking-wide mb-3">What to Expect</p>
+                    <p className="text-gray-700 leading-relaxed">
+                      After a quick blood draw processed in our centrifuge, a topical numbing cream is applied. Microneedling is then performed across the face (or targeted area), followed by application of your PRP/PRF serum, which absorbs into the micro-channels. The full session takes about 60–75 minutes. Skin may appear pink or flushed for 24–48 hours. A series of 3–4 sessions delivers progressive improvement in tone, texture, and firmness.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* How it works */}
+            <div className="mb-16">
+              <h2 className="text-4xl font-serif font-light text-center mb-12 reveal" style={{ color: '#D4AF37' }}>
+                The Process
+              </h2>
+              <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                {[
+                  { step: '01', title: 'Consultation', desc: 'We assess your goals, review your history, and build a personalized treatment plan.' },
+                  { step: '02', title: 'Blood Draw', desc: 'A small sample of your blood is drawn — similar to a routine lab test.' },
+                  { step: '03', title: 'Centrifuge', desc: 'Your blood is spun in our medical-grade centrifuge to isolate PRP or PRF.' },
+                  { step: '04', title: 'Treatment', desc: 'The concentrated growth factors are applied or injected for scalp or skin renewal.' }
+                ].map((phase, i) => (
+                  <div key={i} className="text-center reveal reveal-scale" style={{ transitionDelay: `${i * 100}ms` }}>
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 flex items-center justify-center font-serif text-xl" style={{ borderColor: '#D4AF37', color: '#D4AF37' }}>
+                      {phase.step}
+                    </div>
+                    <h3 className="text-lg font-serif font-medium text-black mb-2">{phase.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{phase.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 text-center reveal">
+              <h3 className="text-3xl font-serif font-light mb-4 text-black">
+                Ready to restore from within?
+              </h3>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                PRP and PRF treatments use your body's own growth factors — no synthetic fillers, no chemicals. Book a consultation to see if regenerative aesthetics is right for you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#D4AF37' }}
+                >
+                  Book a Consultation
+                </a>
+                <button
+                  className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
+                  style={{ borderColor: '#D4AF37' }}
+                  onClick={() => navigateTo('contact')}
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -1500,8 +1669,104 @@ function App() {
       {currentPage === 'shop' && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
-            <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>Shop</h1>
-            <p className="text-xl text-gray-600 text-center mb-12">Coming Soon - Wellness products and supplements.</p>
+            <h1 className="text-5xl font-serif font-light text-center mb-4 reveal" style={{ color: '#D4AF37' }}>Shop</h1>
+            <div className="flex justify-center mb-8 reveal delay-100">
+              <div className="h-px reveal-line" style={{ backgroundColor: '#D4AF37' }} />
+            </div>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto reveal delay-200">
+              Premium wellness products, aesthetic treatments, and gift cards — curated by Dr. Ayupova to support your health and beauty at home.
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {[
+                {
+                  id: 'gift-cards',
+                  title: 'Gift Cards',
+                  description: 'Give the gift of wellness. Kalon gift cards can be used toward any service or product — the perfect present for someone you care about.',
+                  icon: Gift
+                },
+                {
+                  id: 'skincare',
+                  title: 'Skincare',
+                  description: 'Medical-grade skincare lines selected by Dr. Ayupova to cleanse, protect, and rejuvenate your skin with clinically proven ingredients.',
+                  icon: Sparkles
+                },
+                {
+                  id: 'wellness-shop',
+                  title: 'Wellness',
+                  description: 'Pharmaceutical-grade supplements and wellness essentials to support energy, immunity, metabolism, and longevity between visits.',
+                  icon: Heart
+                },
+                {
+                  id: 'upneeq',
+                  title: 'Upneeq',
+                  description: 'The only FDA-approved prescription eye drop for acquired ptosis (low-lying eyelids). A daily drop that lifts the upper eyelid for a more open, refreshed look.',
+                  icon: Eye
+                },
+                {
+                  id: 'votesse',
+                  title: 'Votesse',
+                  description: 'A prescription lash serum formulated with bimatoprost to grow longer, fuller, darker eyelashes — applied once nightly along the lash line.',
+                  icon: Droplet
+                },
+                {
+                  id: 'latisse',
+                  title: 'Latisse',
+                  description: 'The original FDA-approved eyelash growth treatment. Grow your own natural lashes longer, thicker, and darker with nightly application.',
+                  icon: Droplet
+                }
+              ].map((product, i) => (
+                <div
+                  key={product.id}
+                  className="bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-scale cursor-pointer group"
+                  style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+                  onClick={() => {
+                    if (product.id === 'gift-cards') {
+                      window.open('https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858', '_blank', 'noopener noreferrer');
+                    }
+                  }}
+                >
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center icon-float" style={{ backgroundColor: '#D4AF37' }}>
+                      <product.icon className="w-7 h-7 text-black" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-serif font-medium text-black mb-3">{product.title}</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
+                  <div className="flex items-center font-medium transition-transform group-hover:translate-x-1" style={{ color: '#D4AF37' }}>
+                    <span>Learn More</span>
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 text-center reveal">
+              <h3 className="text-3xl font-serif font-light mb-4 text-black">
+                Questions about a product?
+              </h3>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Upneeq, Votesse, and Latisse are prescription products. A brief consultation is required before purchase. Reach out and our team will guide you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href="https://www.tebra.com/care/provider/nargiza-ayupova-dnp-1356796858"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-10 py-4 rounded-full font-medium text-black transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#D4AF37' }}
+                >
+                  Book a Consultation
+                </a>
+                <button
+                  className="border-2 px-10 py-4 rounded-full font-medium text-black hover:bg-black hover:text-white transition-all"
+                  style={{ borderColor: '#D4AF37' }}
+                  onClick={() => navigateTo('contact')}
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -1697,7 +1962,7 @@ function App() {
           </div>
         </div>
       )}
-      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'peptides', 'weight-loss'].includes(currentPage) && (
+      {!['home', 'services', 'contact', 'reviews', 'shop', 'team', 'policies', 'insurances', 'womens-health', 'mens-health', 'iv-treatments', 'peptides', 'weight-loss', 'regenerative-aesthetics'].includes(currentPage) && (
         <div className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-5xl font-serif font-light text-center mb-16" style={{ color: '#D4AF37' }}>
