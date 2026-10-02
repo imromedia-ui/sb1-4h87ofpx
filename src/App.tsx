@@ -54,6 +54,8 @@ function useScrollReveal() {
   });
 }
 
+const BASE = import.meta.env.BASE_URL;
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -142,7 +144,7 @@ function App() {
 
   const handleMobileNavClick = (pageId: string) => {
     if (pageId === 'policies') {
-      window.open('/policies.html', '_blank');
+      window.open(`${BASE}policies.html`, '_blank');
     } else {
       navigateTo(pageId);
     }
@@ -196,7 +198,7 @@ function App() {
                             className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-black font-medium transition-colors duration-150"
                             onClick={() => {
                               if (subItem.id === 'policies') {
-                                window.open('/policies.html', '_blank');
+                                window.open(`${BASE}policies.html`, '_blank');
                               } else {
                                 navigateTo(subItem.id);
                               }
@@ -1264,7 +1266,7 @@ function App() {
 
             <div className="mb-16 reveal reveal-scale">
               <img
-                src="/botox-treatment-hero.webp"
+                src={`${BASE}botox-treatment-hero.webp`}
                 alt="Botox neurotoxin injection treatment at Kalon Primary Care & Wellness"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover"
                 style={{ maxHeight: '420px' }}
@@ -1379,7 +1381,7 @@ function App() {
 
             <div className="mb-16 reveal reveal-scale">
               <img
-                src="/hair-restoration-hero.webp"
+                src={`${BASE}hair-restoration-hero.webp`}
                 alt="Hair restoration scalp treatment at Kalon Primary Care & Wellness"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover"
                 style={{ maxHeight: '420px' }}
@@ -1570,7 +1572,7 @@ function App() {
 
             <div className="mb-16 reveal reveal-scale">
               <img
-                src="/microneedling-prp-hero.webp"
+                src={`${BASE}microneedling-prp-hero.webp`}
                 alt="Microneedling with PRP facial treatment at Kalon Primary Care & Wellness"
                 className="w-full max-w-4xl mx-auto rounded-2xl shadow-lg object-cover"
                 style={{ maxHeight: '420px' }}
@@ -3433,50 +3435,82 @@ function App() {
             </div>
             <p className="text-xl text-gray-600 text-center mb-12 reveal delay-200">What our patients are saying.</p>
 
+            {/* Google Rating Summary */}
+            <div className="max-w-2xl mx-auto mb-16 reveal">
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 flex flex-col items-center text-center">
+                <div className="flex items-center gap-3 mb-3">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                  <span className="text-2xl font-serif font-medium text-black">Google Reviews</span>
+                </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-4xl font-serif font-light text-black">4.9</span>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-6 h-6 fill-current" style={{ color: '#D4AF37' }} />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-gray-600">Based on 119 Google reviews</p>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  name: "Sarah M.",
+                  name: "Zoya",
                   rating: 5,
-                  review: "Dr. Ayupova and her team provide exceptional care. The IV therapy sessions have completely transformed my energy levels. The office is beautiful and the staff is so welcoming.",
-                  service: "IV Therapy"
+                  review: "Dr. Nargiza Ayupova is incredible. Not only has she taken great care of my health, but also she is lovely to speak with at every appointment. It's rare to find a doctor that combines such personal touches and care for a patient as a person with outstanding quality of medical care. I highly recommend becoming her patient!",
+                  service: "Google Review"
                 },
                 {
-                  name: "Michael R.",
+                  name: "Elena R.",
                   rating: 5,
-                  review: "Finally found a primary care provider who truly listens. The comprehensive health assessment was thorough and the personalized wellness plan is exactly what I needed.",
-                  service: "Primary Care"
+                  review: "This has been the most positive experience I've ever had with a doctor. I am truly grateful for the kindness, compassion, and professionalism I received. The doctor always takes the time to listen carefully, explains everything clearly, and orders the necessary tests to make sure nothing is overlooked. Every visit is filled with warmth, care, and genuine concern for patients.",
+                  service: "Google Review \u2022 July 2026"
                 },
                 {
-                  name: "Jennifer L.",
+                  name: "Valeriia K.",
                   rating: 5,
-                  review: "The women's health services here are outstanding. Dr. Ayupova takes time to explain everything and makes you feel comfortable discussing any concerns.",
-                  service: "Women's Health"
+                  review: "Dr. Nargiza is compassionate, thorough, and truly listens to her patients. I always feel well cared for and never rushed. Highly recommend!",
+                  service: "Google Review \u2022 August 2026"
                 },
                 {
-                  name: "David K.",
+                  name: "Shakhodat T.",
                   rating: 5,
-                  review: "Professional, knowledgeable, and caring. The men's health consultation was comprehensive and the follow-up care has been excellent. Highly recommend!",
-                  service: "Men's Health"
+                  review: "She's a very good doctor, I recommend to everyone.",
+                  service: "Google Review \u2022 August 2026"
                 },
                 {
-                  name: "Lisa T.",
+                  name: "Verified Patient",
                   rating: 5,
-                  review: "The Glow from Within program exceeded my expectations. Not only do I feel better internally, but my skin has never looked better. The luxury experience is unmatched.",
-                  service: "Wellness Program"
+                  review: "I cannot say enough good things about Dr. Nargiza Ayupova. She is truly amazing, incredibly considerate, and deeply understanding. Every time I have an appointment, she is attentive and patient, never making me feel rushed. She always takes her time to ensure I am completely taken care of and heard. It is rare to find a physician who combines this level of genuine care with exceptional medical attentiveness.",
+                  service: "Google Review"
                 },
                 {
-                  name: "Robert H.",
+                  name: "Verified Patient",
                   rating: 5,
-                  review: "Kalon offers the perfect blend of medical expertise and wellness care. The preventive screenings were thorough and the telehealth options make it so convenient.",
-                  service: "Preventive Care"
+                  review: "Both my wife and I were deeply impressed by her attentive interviews and careful listening. Dr. Ayupova's expertise allowed her to identify concerns we hadn't even thought to mention. We feel confident we are in the best hands.",
+                  service: "Google Review"
                 }
               ].map((review, index) => (
                 <div key={index} className={`bg-gray-50 border border-gray-200 p-8 rounded-lg card-hover reveal reveal-scale delay-${(index % 3) * 100 + 100}`}>
-                  <div className="flex items-center mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#D4AF37' }} />
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#D4AF37' }} />
+                      ))}
+                    </div>
+                    <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
                   </div>
                   <p className="text-gray-700 mb-6 leading-relaxed italic">"{review.review}"</p>
                   <div className="border-t border-gray-200 pt-4">
@@ -3766,7 +3800,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img
-                    src="/upneeq-product.webp"
+                    src={`${BASE}upneeq-product.webp`}
                     alt="Upneeq prescription eye drops"
                     className="w-full h-full object-cover"
                   />
@@ -3886,7 +3920,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img
-                    src="/latisse-product.webp"
+                    src={`${BASE}latisse-product.webp`}
                     alt="Latisse prescription eyelash growth serum"
                     className="w-full h-full object-cover"
                   />
@@ -4006,7 +4040,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img
-                    src="/votesse-product.webp"
+                    src={`${BASE}votesse-product.webp`}
                     alt="Votesse hair health dietary supplement"
                     className="w-full h-full object-cover"
                   />
@@ -4050,11 +4084,11 @@ function App() {
                 <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
                   <div className="grid grid-cols-2">
                     <div className="relative">
-                      <img src="/votesse-before-1.webp" alt="Before treatment - thinning hair at crown" className="w-full h-64 object-cover" />
+                      <img src={`${BASE}votesse-before-1.webp`} alt="Before treatment - thinning hair at crown" className="w-full h-64 object-cover" />
                       <span className="absolute top-3 left-3 px-3 py-1 text-sm font-medium bg-black text-white rounded-full">Before</span>
                     </div>
                     <div className="relative">
-                      <img src="/votesse-after-1.webp" alt="After 5 months of Votesse - fuller hair at crown" className="w-full h-64 object-cover" />
+                      <img src={`${BASE}votesse-after-1.webp`} alt="After 5 months of Votesse - fuller hair at crown" className="w-full h-64 object-cover" />
                       <span className="absolute top-3 left-3 px-3 py-1 text-sm font-medium rounded-full" style={{ backgroundColor: '#D4AF37', color: '#000' }}>After 5 Months</span>
                     </div>
                   </div>
@@ -4063,11 +4097,11 @@ function App() {
                 <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
                   <div className="grid grid-cols-2">
                     <div className="relative">
-                      <img src="/votesse-before-2.webp" alt="Before treatment - thinning hair along part line" className="w-full h-64 object-cover" />
+                      <img src={`${BASE}votesse-before-2.webp`} alt="Before treatment - thinning hair along part line" className="w-full h-64 object-cover" />
                       <span className="absolute top-3 left-3 px-3 py-1 text-sm font-medium bg-black text-white rounded-full">Before</span>
                     </div>
                     <div className="relative">
-                      <img src="/votesse-after-2.webp" alt="After 5 months of Votesse - fuller hair along part line" className="w-full h-64 object-cover" />
+                      <img src={`${BASE}votesse-after-2.webp`} alt="After 5 months of Votesse - fuller hair along part line" className="w-full h-64 object-cover" />
                       <span className="absolute top-3 left-3 px-3 py-1 text-sm font-medium rounded-full" style={{ backgroundColor: '#D4AF37', color: '#000' }}>After 5 Months</span>
                     </div>
                   </div>
@@ -4305,7 +4339,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl bg-white p-8 flex items-center justify-center">
                   <img
-                    src="/deplinpro-product.png"
+                    src={`${BASE}deplinpro-product.png`}
                     alt="DeplinPRO Mood Health medical food"
                     className="max-h-96 object-contain"
                   />
@@ -4463,7 +4497,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl bg-white p-8 flex items-center justify-center">
                   <img
-                    src="/metanxpro-product.png"
+                    src={`${BASE}metanxpro-product.png`}
                     alt="MetanxPRO Nerve Health medical food"
                     className="max-h-96 object-contain"
                   />
@@ -4512,7 +4546,7 @@ function App() {
             <div className="mb-16 reveal">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/metanx-nerve-illustration.png"
+                  src={`${BASE}metanx-nerve-illustration.png`}
                   alt="Illustration of the nerve system with a focus on a neuron"
                   className="w-full object-contain bg-white"
                 />
@@ -4597,7 +4631,7 @@ function App() {
             <div className="mb-16 reveal">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src="/metanx-couple-lifestyle.jpg"
+                  src={`${BASE}metanx-couple-lifestyle.jpg`}
                   alt="Senior couple dancing in a garden, representing restored nerve function and mobility"
                   className="w-full h-full object-cover"
                 />
@@ -4695,7 +4729,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl bg-white p-8 flex items-center justify-center">
                   <img
-                    src="/cerefolin-product.png"
+                    src={`${BASE}cerefolin-product.png`}
                     alt="Cerefolin Brain Wellness medical food"
                     className="max-h-96 object-contain"
                   />
@@ -4982,7 +5016,7 @@ function App() {
               <div className="reveal reveal-left">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img
-                    src="/tretinoin-product.webp"
+                    src={`${BASE}tretinoin-product.webp`}
                     alt="Tretinoin prescription cream"
                     className="w-full h-full object-cover"
                   />
@@ -5100,7 +5134,7 @@ function App() {
                 <div className="md:flex">
                   <div className="md:w-1/3 reveal-left delay-200">
                     <img
-                      src="/bd7b526b-a161-4c77-aa85-e799caa30337.jpeg"
+                      src={`${BASE}bd7b526b-a161-4c77-aa85-e799caa30337.jpeg`}
                       alt="Nargiza Ayupova, DNP"
                       className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full mx-auto"
                     />
