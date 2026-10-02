@@ -1,3 +1,166 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Scroll-reveal base states ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delay helpers */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+.delay-600 { transition-delay: 0.6s; }
+
+/* ── Divider line animate-in ── */
+.reveal-line {
+  width: 0;
+  transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-line.visible {
+  width: 80px;
+}
+
+/* ── Floating pulse on icon circles ── */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.icon-float {
+  animation: gentle-float 4s ease-in-out infinite;
+}
+.icon-float-2 {
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+.icon-float-3 {
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+
+/* ── Heartbeat pulse on Heart icon ── */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.15); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.1); }
+  70%       { transform: scale(1); }
+}
+.pulse-heart {
+  animation: heartbeat 2.8s ease-in-out infinite;
+}
+
+/* ── Shimmer on gold accent bar ── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37 25%, #f0d060 50%, #D4AF37 75%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card hover lift ── */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.10);
+}
+
+/* ── Page transition fade ── */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Subtle background breathe on hero ── */
+@keyframes bg-breathe {
+  0%, 100% { background-color: #f9f9f9; }
+  50%       { background-color: #f3f3f0; }
+}
+.hero-breathe {
+  animation: bg-breathe 6s ease-in-out infinite;
+}
+
+/* ── Stat counter number pop ── */
+@keyframes number-pop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+.stat-pop {
+  animation: number-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Progress line (used in section dividers) ── */
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.line-grow {
+  transform-origin: left;
+  animation: line-grow 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Stethoscope/activity icon spin once on reveal ── */
+@keyframes icon-spin-once {
+  from { transform: rotate(-15deg) scale(0.8); opacity: 0; }
+  to   { transform: rotate(0deg) scale(1);    opacity: 1; }
+}
+.icon-spin-in {
+  animation: icon-spin-once 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
